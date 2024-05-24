@@ -49,9 +49,11 @@ drought_exp <- read_xlsx(path = here("data",
                                      "Valliere_etal_EcoApps_Data.xlsx"),
                          sheet = "First Harvest")
 
+# here allows us to refer to specific. first arugment data file, then whawt the file actually is. then sheet
+
 # quick look at data 
-str(drought_exp)
-class(drought_exp)
+str(drought_exp) # gives a tibble of what is in each column
+class(drought_exp) # tells us what kind of "thing" each object is. Ex: table and data frame 
 ```
 
 ## cleaning
@@ -91,15 +93,20 @@ ggpairs(drought_exp_clean, # data frame
         upper = list(method = "pearson")) + # calculating Pearson correlation coefficient
   theme_bw() + # cleaner theme
   theme(panel.grid = element_blank()) # getting rid of gridlines
+
+# visualize and calculate correlation coefficient
+# ex: top left dist of leaf dry weight (smooth diagonal line is distribution of all variable)
+# bottom left: scatter plot (10 eom point style plots for all of continious variables). EX: bottom left relationshap between leaf dry weight and total mass  
+# root mass, leaf dry weight corr = 0.367. signficantly/strongly positively correlated 
 ```
 
 Choose 3 pairs of variables to compare. Make notes of those comparisons below.    
 
-**insert comparison 1 here**  
+**Leaf dry weight is weakly positively correlated with specific leaf area (Pearson's r = 0.033**  
 
-**insert comparison 2 here**  
+**Shoot mass and total mass are strongly positively correlated (Pearson's r = 0.902)**  
 
-**insert comparison 3 here**
+**Leaf dry weight is strongly positively correlated with total mass (Pearson's r = 0.046**
 
 ## Preliminary visualizations  
 
@@ -121,9 +128,13 @@ ggplot(data = drought_exp_clean, # data frame
            y = total_g)) + # y-axis
   geom_jitter(width = 0.1, # narrow jitter
               height = 0) # not jittering points up and down
+
+#one easy way to get out pattenrs is to reorder x axis in reverse order of mean total mass 
+
 ```
 
-**response here**
+**Total biomass seemingly does differ between species  Gumweed, california poppy and purple needlegrass seem to have the highest biomass. Deerweed, scarlet buguler and purplse sage seem to have the lowest biomass.**
+
 
 ### how does total biomass differ between water treatments?
 
@@ -135,7 +146,7 @@ ggplot(data = drought_exp_clean, # data frame
               height = 0) # not jittering points up and down
 ```
 
-**response here**
+**It seems that well water treated plants have a higher total biomass than drought stressed plants.**
 
 ### how does specific leaf area (SLA) influence total biomass?
 
@@ -146,7 +157,7 @@ ggplot(data = drought_exp_clean, # data frame
   geom_point() # scatterplot
 ```
 
-**response here**
+**It seems that specific leaf area moderately and positively affects total leaf mass.**
 
 # Model construction
 
