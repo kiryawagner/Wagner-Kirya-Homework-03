@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Kirya Wagner">
 
-<title>Homework starter document</title>
+<title>Homework 3</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -115,13 +116,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Homework starter document</h1>
+<h1 class="title">Homework 3</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Kirya Wagner </p>
+          </div>
+  </div>
     
   
     
@@ -387,10 +394,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>Model selection</h1>
 <p>From the <code>MuMIn</code> package</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">model.sel</span>(model0,</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>          model1, </span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>          model2, </span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>          model3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compare functions </span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># "multi model inference"</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">model.sel</span>(model0,</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>          model1, </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>          model2, </span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>          model3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Model selection table 
           (Int)        sla spc_nam wtr_trt df logLik   AICc delta weight
@@ -401,7 +410,9 @@ model0  0.27900                             2 39.580  -75.0 78.77      0
 Models ranked by AICc(x) </code></pre>
 </div>
 </div>
-<p>Out of the four models we have tried, the best model is the one that includes <strong>insert predictors here</strong></p>
+<p>Out of the four models we have tried, the best model is the one that includes **Specific leaf area, water treatment, and species (saturated models)</p>
+<p><strong>BEST model (balances explanatory power with complecity) is model 1, or the saturated model. Delta: difference between AIC of best and others. Always 0 for best model.</strong><br>
+<strong>DOUBLE CHECK DIAGNOSTICS FOR BEST MODEL</strong></p>
 <p>Note that this may change once you fit and compare the other model!</p>
 </section>
 <section id="model-summary" class="level1">
@@ -449,19 +460,18 @@ F-statistic: 23.44 on 8 and 61 DF,  p-value: 6.283e-16</code></pre>
 </div>
 <p>What are the reference levels?</p>
 <ul>
-<li>reference for <code>water_treatment</code><br>
-</li>
-<li>reference for <code>species_name</code></li>
+<li>reference for <code>water_treatment</code>:</li>
+<li>reference for <code>species_name</code>:</li>
 </ul>
-<p><strong>reference for water_treatment:</strong> <strong>insert response here</strong><br>
-<strong>reference for species_name:</strong> <strong>insert response here</strong></p>
+<p><strong>reference for water_treatment:</strong> <strong>drought stress</strong><br>
+<strong>reference for species_name:</strong> <strong>acmispon glaber (deerweed)</strong></p>
 <p>Interpret the model estimates for the:</p>
 <ul>
-<li>intercept: <strong>insert response here</strong><br>
+<li>intercept: <strong>mass of the reference (Acmispon glaber) in drought stressed water treatment when SLA = 0</strong><br>
 </li>
-<li>SLA slope: <strong>insert response here</strong><br>
+<li>SLA slope: <strong>for each 1 unit incresase in SLA (mm<sup>2</sup>/g), you expect a decrease in plant mass of 0.002 +- (figure out how to display plus minus in doc) 0.005. NO EFFECT OF SLA ON MASS EVEN THOUGH CHOSEN AS BEST MODEL</strong><br>
 </li>
-<li>well watered estimate: <strong>insert response here</strong><br>
+<li>well watered estimate: <strong>on average across species and SLA, well watered plants tend to be 0.12 +- 0.02g heavier than drought stressed plants. Water treatment signficantly predicts total mass (with p)</strong><br>
 </li>
 <li>Lotus scoparius estimate: <strong>insert response here</strong><br>
 </li>
@@ -543,29 +553,29 @@ F-statistic: 23.44 on 8 and 61 DF,  p-value: 6.283e-16</code></pre>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>flextable<span class="sc">::</span><span class="fu">as_flextable</span>(model1) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
-<div class="tabwid"><style>.cl-c34990a2{}.cl-c3441ac8{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-c3441adc{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:italic;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-c3462aa2{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-c3462aac{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-c3463bb4{width:3.113in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463bb5{width:0.88in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463bbe{width:1.287in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463bbf{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463bc0{width:0.752in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463bc8{width:0.4in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463bc9{width:3.113in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463bd2{width:0.88in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463bd3{width:1.287in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463bd4{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463bdc{width:0.752in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463bdd{width:0.4in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463be6{width:3.113in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463be7{width:0.88in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463bf0{width:1.287in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463bf1{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463bfa{width:0.752in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463bfb{width:0.4in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463c04{width:3.113in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463c05{width:0.88in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463c06{width:1.287in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463c0e{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463c0f{width:0.752in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463c18{width:0.4in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463c19{width:3.113in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463c1a{width:0.88in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463c22{width:1.287in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463c23{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463c2c{width:0.752in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463c2d{width:0.4in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463c36{width:3.113in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463c37{width:0.88in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463c38{width:1.287in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463c40{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463c41{width:0.752in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463c4a{width:0.4in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463c4b{width:3.113in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463c4c{width:0.88in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463c54{width:1.287in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463c55{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463c5e{width:0.752in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463c5f{width:0.4in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463c68{width:3.113in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463c69{width:0.88in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463c6a{width:1.287in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463c72{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463c73{width:0.752in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463c74{width:0.4in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463c7c{width:3.113in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463c7d{width:0.88in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463c86{width:1.287in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463c87{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463c88{width:0.752in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463c90{width:0.4in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463c91{width:3.113in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463c9a{width:0.88in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463c9b{width:1.287in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463ca4{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463ca5{width:0.752in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c3463ca6{width:0.4in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-c34990a2"><thead><tr style="overflow-wrap:break-word;"><th class="cl-c3463bb4"><p class="cl-c3462aa2"><span class="cl-c3441ac8"></span></p></th><th class="cl-c3463bb5"><p class="cl-c3462aac"><span class="cl-c3441ac8">Estimate</span></p></th><th class="cl-c3463bbe"><p class="cl-c3462aac"><span class="cl-c3441ac8">Standard Error</span></p></th><th class="cl-c3463bbf"><p class="cl-c3462aac"><span class="cl-c3441ac8">t value</span></p></th><th class="cl-c3463bc0"><p class="cl-c3462aac"><span class="cl-c3441ac8">Pr(&gt;|t|)</span></p></th><th class="cl-c3463bc8"><p class="cl-c3462aa2"><span class="cl-c3441ac8"></span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-c3463bc9"><p class="cl-c3462aa2"><span class="cl-c3441ac8">(Intercept)</span></p></td><td class="cl-c3463bd2"><p class="cl-c3462aac"><span class="cl-c3441ac8">0.080</span></p></td><td class="cl-c3463bd3"><p class="cl-c3462aac"><span class="cl-c3441ac8">0.056</span></p></td><td class="cl-c3463bd4"><p class="cl-c3462aac"><span class="cl-c3441ac8">1.416</span></p></td><td class="cl-c3463bdc"><p class="cl-c3462aac"><span class="cl-c3441ac8">0.1618</span></p></td><td class="cl-c3463bdd"><p class="cl-c3462aa2"><span class="cl-c3441ac8">   </span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c3463be6"><p class="cl-c3462aa2"><span class="cl-c3441ac8">sla</span></p></td><td class="cl-c3463be7"><p class="cl-c3462aac"><span class="cl-c3441ac8">-0.000</span></p></td><td class="cl-c3463bf0"><p class="cl-c3462aac"><span class="cl-c3441ac8">0.000</span></p></td><td class="cl-c3463bf1"><p class="cl-c3462aac"><span class="cl-c3441ac8">-0.500</span></p></td><td class="cl-c3463bfa"><p class="cl-c3462aac"><span class="cl-c3441ac8">0.6188</span></p></td><td class="cl-c3463bfb"><p class="cl-c3462aa2"><span class="cl-c3441ac8">   </span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c3463c04"><p class="cl-c3462aa2"><span class="cl-c3441ac8">water_treatmentWell watered</span></p></td><td class="cl-c3463c05"><p class="cl-c3462aac"><span class="cl-c3441ac8">0.122</span></p></td><td class="cl-c3463c06"><p class="cl-c3462aac"><span class="cl-c3441ac8">0.020</span></p></td><td class="cl-c3463c0e"><p class="cl-c3462aac"><span class="cl-c3441ac8">5.993</span></p></td><td class="cl-c3463c0f"><p class="cl-c3462aac"><span class="cl-c3441ac8">0.0000</span></p></td><td class="cl-c3463c18"><p class="cl-c3462aa2"><span class="cl-c3441ac8">***</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c3463c19"><p class="cl-c3462aa2"><span class="cl-c3441ac8">species_nameEncelia californica</span></p></td><td class="cl-c3463c1a"><p class="cl-c3462aac"><span class="cl-c3441ac8">0.238</span></p></td><td class="cl-c3463c22"><p class="cl-c3462aac"><span class="cl-c3441ac8">0.051</span></p></td><td class="cl-c3463c23"><p class="cl-c3462aac"><span class="cl-c3441ac8">4.633</span></p></td><td class="cl-c3463c2c"><p class="cl-c3462aac"><span class="cl-c3441ac8">0.0000</span></p></td><td class="cl-c3463c2d"><p class="cl-c3462aa2"><span class="cl-c3441ac8">***</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c3463c19"><p class="cl-c3462aa2"><span class="cl-c3441ac8">species_nameEschscholzia californica</span></p></td><td class="cl-c3463c1a"><p class="cl-c3462aac"><span class="cl-c3441ac8">0.234</span></p></td><td class="cl-c3463c22"><p class="cl-c3462aac"><span class="cl-c3441ac8">0.033</span></p></td><td class="cl-c3463c23"><p class="cl-c3462aac"><span class="cl-c3441ac8">7.110</span></p></td><td class="cl-c3463c2c"><p class="cl-c3462aac"><span class="cl-c3441ac8">0.0000</span></p></td><td class="cl-c3463c2d"><p class="cl-c3462aa2"><span class="cl-c3441ac8">***</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c3463c36"><p class="cl-c3462aa2"><span class="cl-c3441ac8">species_nameGrindelia camporum</span></p></td><td class="cl-c3463c37"><p class="cl-c3462aac"><span class="cl-c3441ac8">0.330</span></p></td><td class="cl-c3463c38"><p class="cl-c3462aac"><span class="cl-c3441ac8">0.047</span></p></td><td class="cl-c3463c40"><p class="cl-c3462aac"><span class="cl-c3441ac8">7.072</span></p></td><td class="cl-c3463c41"><p class="cl-c3462aac"><span class="cl-c3441ac8">0.0000</span></p></td><td class="cl-c3463c4a"><p class="cl-c3462aa2"><span class="cl-c3441ac8">***</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c3463c4b"><p class="cl-c3462aa2"><span class="cl-c3441ac8">species_nameNasella pulchra</span></p></td><td class="cl-c3463c4c"><p class="cl-c3462aac"><span class="cl-c3441ac8">0.241</span></p></td><td class="cl-c3463c54"><p class="cl-c3462aac"><span class="cl-c3441ac8">0.040</span></p></td><td class="cl-c3463c55"><p class="cl-c3462aac"><span class="cl-c3441ac8">5.985</span></p></td><td class="cl-c3463c5e"><p class="cl-c3462aac"><span class="cl-c3441ac8">0.0000</span></p></td><td class="cl-c3463c5f"><p class="cl-c3462aa2"><span class="cl-c3441ac8">***</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c3463c19"><p class="cl-c3462aa2"><span class="cl-c3441ac8">species_namePenstemon centranthifolius</span></p></td><td class="cl-c3463c1a"><p class="cl-c3462aac"><span class="cl-c3441ac8">0.061</span></p></td><td class="cl-c3463c22"><p class="cl-c3462aac"><span class="cl-c3441ac8">0.039</span></p></td><td class="cl-c3463c23"><p class="cl-c3462aac"><span class="cl-c3441ac8">1.555</span></p></td><td class="cl-c3463c2c"><p class="cl-c3462aac"><span class="cl-c3441ac8">0.1251</span></p></td><td class="cl-c3463c2d"><p class="cl-c3462aa2"><span class="cl-c3441ac8">   </span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c3463c68"><p class="cl-c3462aa2"><span class="cl-c3441ac8">species_nameSalvia leucophylla</span></p></td><td class="cl-c3463c69"><p class="cl-c3462aac"><span class="cl-c3441ac8">0.117</span></p></td><td class="cl-c3463c6a"><p class="cl-c3462aac"><span class="cl-c3441ac8">0.033</span></p></td><td class="cl-c3463c72"><p class="cl-c3462aac"><span class="cl-c3441ac8">3.494</span></p></td><td class="cl-c3463c73"><p class="cl-c3462aac"><span class="cl-c3441ac8">0.0009</span></p></td><td class="cl-c3463c74"><p class="cl-c3462aa2"><span class="cl-c3441ac8">***</span></p></td></tr></tbody><tfoot><tr style="overflow-wrap:break-word;"><td colspan="6" class="cl-c3463c7c"><p class="cl-c3462aac"><span class="cl-c3441adc">Signif. codes: 0 &lt;= '***' &lt; 0.001 &lt; '**' &lt; 0.01 &lt; '*' &lt; 0.05</span></p></td></tr><tr style="overflow-wrap:break-word;"><td colspan="6" class="cl-c3463c91"><p class="cl-c3462aa2"><span class="cl-c3441ac8"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td colspan="6" class="cl-c3463c91"><p class="cl-c3462aa2"><span class="cl-c3441ac8">Residual standard error: 0.07296 on 61 degrees of freedom</span></p></td></tr><tr style="overflow-wrap:break-word;"><td colspan="6" class="cl-c3463c91"><p class="cl-c3462aa2"><span class="cl-c3441ac8">Multiple R-squared: 0.7545, Adjusted R-squared: 0.7223</span></p></td></tr><tr style="overflow-wrap:break-word;"><td colspan="6" class="cl-c3463c91"><p class="cl-c3462aa2"><span class="cl-c3441ac8">F-statistic: 23.44 on 61 and 8 DF, p-value: 0.0000</span></p></td></tr></tfoot></table></div>
+<div class="tabwid"><style>.cl-90c6cbb0{}.cl-90c174c6{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-90c174da{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:italic;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-90c37c76{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-90c37c80{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-90c38d7e{width:3.113in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38d7f{width:0.88in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38d88{width:1.287in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38d89{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38d92{width:0.752in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38d93{width:0.4in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38d9c{width:3.113in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38d9d{width:0.88in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38d9e{width:1.287in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38da6{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38da7{width:0.752in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38da8{width:0.4in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38da9{width:3.113in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38db0{width:0.88in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38db1{width:1.287in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38dba{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38dbb{width:0.752in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38dbc{width:0.4in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38dc4{width:3.113in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38dc5{width:0.88in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38dc6{width:1.287in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38dc7{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38dce{width:0.752in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38dd8{width:0.4in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38dd9{width:3.113in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38dda{width:0.88in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38de2{width:1.287in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38de3{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38dec{width:0.752in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38ded{width:0.4in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38df6{width:3.113in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38df7{width:0.88in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38e00{width:1.287in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38e01{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38e02{width:0.752in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38e0a{width:0.4in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38e0b{width:3.113in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38e0c{width:0.88in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38e14{width:1.287in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38e15{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38e1e{width:0.752in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38e1f{width:0.4in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38e28{width:3.113in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38e29{width:0.88in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38e2a{width:1.287in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38e32{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38e33{width:0.752in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38e3c{width:0.4in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38e3d{width:3.113in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38e46{width:0.88in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38e47{width:1.287in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38e48{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38e50{width:0.752in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38e51{width:0.4in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38e5a{width:3.113in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38e5b{width:0.88in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38e5c{width:1.287in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38e64{width:0.75in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38e6e{width:0.752in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90c38e6f{width:0.4in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-90c6cbb0"><thead><tr style="overflow-wrap:break-word;"><th class="cl-90c38d7e"><p class="cl-90c37c76"><span class="cl-90c174c6"></span></p></th><th class="cl-90c38d7f"><p class="cl-90c37c80"><span class="cl-90c174c6">Estimate</span></p></th><th class="cl-90c38d88"><p class="cl-90c37c80"><span class="cl-90c174c6">Standard Error</span></p></th><th class="cl-90c38d89"><p class="cl-90c37c80"><span class="cl-90c174c6">t value</span></p></th><th class="cl-90c38d92"><p class="cl-90c37c80"><span class="cl-90c174c6">Pr(&gt;|t|)</span></p></th><th class="cl-90c38d93"><p class="cl-90c37c76"><span class="cl-90c174c6"></span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-90c38d9c"><p class="cl-90c37c76"><span class="cl-90c174c6">(Intercept)</span></p></td><td class="cl-90c38d9d"><p class="cl-90c37c80"><span class="cl-90c174c6">0.080</span></p></td><td class="cl-90c38d9e"><p class="cl-90c37c80"><span class="cl-90c174c6">0.056</span></p></td><td class="cl-90c38da6"><p class="cl-90c37c80"><span class="cl-90c174c6">1.416</span></p></td><td class="cl-90c38da7"><p class="cl-90c37c80"><span class="cl-90c174c6">0.1618</span></p></td><td class="cl-90c38da8"><p class="cl-90c37c76"><span class="cl-90c174c6">   </span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-90c38da9"><p class="cl-90c37c76"><span class="cl-90c174c6">sla</span></p></td><td class="cl-90c38db0"><p class="cl-90c37c80"><span class="cl-90c174c6">-0.000</span></p></td><td class="cl-90c38db1"><p class="cl-90c37c80"><span class="cl-90c174c6">0.000</span></p></td><td class="cl-90c38dba"><p class="cl-90c37c80"><span class="cl-90c174c6">-0.500</span></p></td><td class="cl-90c38dbb"><p class="cl-90c37c80"><span class="cl-90c174c6">0.6188</span></p></td><td class="cl-90c38dbc"><p class="cl-90c37c76"><span class="cl-90c174c6">   </span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-90c38dc4"><p class="cl-90c37c76"><span class="cl-90c174c6">water_treatmentWell watered</span></p></td><td class="cl-90c38dc5"><p class="cl-90c37c80"><span class="cl-90c174c6">0.122</span></p></td><td class="cl-90c38dc6"><p class="cl-90c37c80"><span class="cl-90c174c6">0.020</span></p></td><td class="cl-90c38dc7"><p class="cl-90c37c80"><span class="cl-90c174c6">5.993</span></p></td><td class="cl-90c38dce"><p class="cl-90c37c80"><span class="cl-90c174c6">0.0000</span></p></td><td class="cl-90c38dd8"><p class="cl-90c37c76"><span class="cl-90c174c6">***</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-90c38dd9"><p class="cl-90c37c76"><span class="cl-90c174c6">species_nameEncelia californica</span></p></td><td class="cl-90c38dda"><p class="cl-90c37c80"><span class="cl-90c174c6">0.238</span></p></td><td class="cl-90c38de2"><p class="cl-90c37c80"><span class="cl-90c174c6">0.051</span></p></td><td class="cl-90c38de3"><p class="cl-90c37c80"><span class="cl-90c174c6">4.633</span></p></td><td class="cl-90c38dec"><p class="cl-90c37c80"><span class="cl-90c174c6">0.0000</span></p></td><td class="cl-90c38ded"><p class="cl-90c37c76"><span class="cl-90c174c6">***</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-90c38dd9"><p class="cl-90c37c76"><span class="cl-90c174c6">species_nameEschscholzia californica</span></p></td><td class="cl-90c38dda"><p class="cl-90c37c80"><span class="cl-90c174c6">0.234</span></p></td><td class="cl-90c38de2"><p class="cl-90c37c80"><span class="cl-90c174c6">0.033</span></p></td><td class="cl-90c38de3"><p class="cl-90c37c80"><span class="cl-90c174c6">7.110</span></p></td><td class="cl-90c38dec"><p class="cl-90c37c80"><span class="cl-90c174c6">0.0000</span></p></td><td class="cl-90c38ded"><p class="cl-90c37c76"><span class="cl-90c174c6">***</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-90c38df6"><p class="cl-90c37c76"><span class="cl-90c174c6">species_nameGrindelia camporum</span></p></td><td class="cl-90c38df7"><p class="cl-90c37c80"><span class="cl-90c174c6">0.330</span></p></td><td class="cl-90c38e00"><p class="cl-90c37c80"><span class="cl-90c174c6">0.047</span></p></td><td class="cl-90c38e01"><p class="cl-90c37c80"><span class="cl-90c174c6">7.072</span></p></td><td class="cl-90c38e02"><p class="cl-90c37c80"><span class="cl-90c174c6">0.0000</span></p></td><td class="cl-90c38e0a"><p class="cl-90c37c76"><span class="cl-90c174c6">***</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-90c38e0b"><p class="cl-90c37c76"><span class="cl-90c174c6">species_nameNasella pulchra</span></p></td><td class="cl-90c38e0c"><p class="cl-90c37c80"><span class="cl-90c174c6">0.241</span></p></td><td class="cl-90c38e14"><p class="cl-90c37c80"><span class="cl-90c174c6">0.040</span></p></td><td class="cl-90c38e15"><p class="cl-90c37c80"><span class="cl-90c174c6">5.985</span></p></td><td class="cl-90c38e1e"><p class="cl-90c37c80"><span class="cl-90c174c6">0.0000</span></p></td><td class="cl-90c38e1f"><p class="cl-90c37c76"><span class="cl-90c174c6">***</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-90c38dd9"><p class="cl-90c37c76"><span class="cl-90c174c6">species_namePenstemon centranthifolius</span></p></td><td class="cl-90c38dda"><p class="cl-90c37c80"><span class="cl-90c174c6">0.061</span></p></td><td class="cl-90c38de2"><p class="cl-90c37c80"><span class="cl-90c174c6">0.039</span></p></td><td class="cl-90c38de3"><p class="cl-90c37c80"><span class="cl-90c174c6">1.555</span></p></td><td class="cl-90c38dec"><p class="cl-90c37c80"><span class="cl-90c174c6">0.1251</span></p></td><td class="cl-90c38ded"><p class="cl-90c37c76"><span class="cl-90c174c6">   </span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-90c38e28"><p class="cl-90c37c76"><span class="cl-90c174c6">species_nameSalvia leucophylla</span></p></td><td class="cl-90c38e29"><p class="cl-90c37c80"><span class="cl-90c174c6">0.117</span></p></td><td class="cl-90c38e2a"><p class="cl-90c37c80"><span class="cl-90c174c6">0.033</span></p></td><td class="cl-90c38e32"><p class="cl-90c37c80"><span class="cl-90c174c6">3.494</span></p></td><td class="cl-90c38e33"><p class="cl-90c37c80"><span class="cl-90c174c6">0.0009</span></p></td><td class="cl-90c38e3c"><p class="cl-90c37c76"><span class="cl-90c174c6">***</span></p></td></tr></tbody><tfoot><tr style="overflow-wrap:break-word;"><td colspan="6" class="cl-90c38e3d"><p class="cl-90c37c80"><span class="cl-90c174da">Signif. codes: 0 &lt;= '***' &lt; 0.001 &lt; '**' &lt; 0.01 &lt; '*' &lt; 0.05</span></p></td></tr><tr style="overflow-wrap:break-word;"><td colspan="6" class="cl-90c38e5a"><p class="cl-90c37c76"><span class="cl-90c174c6"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td colspan="6" class="cl-90c38e5a"><p class="cl-90c37c76"><span class="cl-90c174c6">Residual standard error: 0.07296 on 61 degrees of freedom</span></p></td></tr><tr style="overflow-wrap:break-word;"><td colspan="6" class="cl-90c38e5a"><p class="cl-90c37c76"><span class="cl-90c174c6">Multiple R-squared: 0.7545, Adjusted R-squared: 0.7223</span></p></td></tr><tr style="overflow-wrap:break-word;"><td colspan="6" class="cl-90c38e5a"><p class="cl-90c37c76"><span class="cl-90c174c6">F-statistic: 23.44 on 61 and 8 DF, p-value: 0.0000</span></p></td></tr></tfoot></table></div>
 </div>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># another option for a single model</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>gtsummary<span class="sc">::</span><span class="fu">tbl_regression</span>(model1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
-<div id="dgkrwywdji" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#dgkrwywdji table {
+<div id="pdgyjqxory" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#pdgyjqxory table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#dgkrwywdji thead, #dgkrwywdji tbody, #dgkrwywdji tfoot, #dgkrwywdji tr, #dgkrwywdji td, #dgkrwywdji th {
+#pdgyjqxory thead, #pdgyjqxory tbody, #pdgyjqxory tfoot, #pdgyjqxory tr, #pdgyjqxory td, #pdgyjqxory th {
   border-style: none;
 }
 
-#dgkrwywdji p {
+#pdgyjqxory p {
   margin: 0;
   padding: 0;
 }
 
-#dgkrwywdji .gt_table {
+#pdgyjqxory .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -591,12 +601,12 @@ F-statistic: 23.44 on 8 and 61 DF,  p-value: 6.283e-16</code></pre>
   border-left-color: #D3D3D3;
 }
 
-#dgkrwywdji .gt_caption {
+#pdgyjqxory .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#dgkrwywdji .gt_title {
+#pdgyjqxory .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -608,7 +618,7 @@ F-statistic: 23.44 on 8 and 61 DF,  p-value: 6.283e-16</code></pre>
   border-bottom-width: 0;
 }
 
-#dgkrwywdji .gt_subtitle {
+#pdgyjqxory .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -620,7 +630,7 @@ F-statistic: 23.44 on 8 and 61 DF,  p-value: 6.283e-16</code></pre>
   border-top-width: 0;
 }
 
-#dgkrwywdji .gt_heading {
+#pdgyjqxory .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -632,13 +642,13 @@ F-statistic: 23.44 on 8 and 61 DF,  p-value: 6.283e-16</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#dgkrwywdji .gt_bottom_border {
+#pdgyjqxory .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#dgkrwywdji .gt_col_headings {
+#pdgyjqxory .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -653,7 +663,7 @@ F-statistic: 23.44 on 8 and 61 DF,  p-value: 6.283e-16</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#dgkrwywdji .gt_col_heading {
+#pdgyjqxory .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -673,7 +683,7 @@ F-statistic: 23.44 on 8 and 61 DF,  p-value: 6.283e-16</code></pre>
   overflow-x: hidden;
 }
 
-#dgkrwywdji .gt_column_spanner_outer {
+#pdgyjqxory .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -685,15 +695,15 @@ F-statistic: 23.44 on 8 and 61 DF,  p-value: 6.283e-16</code></pre>
   padding-right: 4px;
 }
 
-#dgkrwywdji .gt_column_spanner_outer:first-child {
+#pdgyjqxory .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#dgkrwywdji .gt_column_spanner_outer:last-child {
+#pdgyjqxory .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#dgkrwywdji .gt_column_spanner {
+#pdgyjqxory .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -705,11 +715,11 @@ F-statistic: 23.44 on 8 and 61 DF,  p-value: 6.283e-16</code></pre>
   width: 100%;
 }
 
-#dgkrwywdji .gt_spanner_row {
+#pdgyjqxory .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#dgkrwywdji .gt_group_heading {
+#pdgyjqxory .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -735,7 +745,7 @@ F-statistic: 23.44 on 8 and 61 DF,  p-value: 6.283e-16</code></pre>
   text-align: left;
 }
 
-#dgkrwywdji .gt_empty_group_heading {
+#pdgyjqxory .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -750,15 +760,15 @@ F-statistic: 23.44 on 8 and 61 DF,  p-value: 6.283e-16</code></pre>
   vertical-align: middle;
 }
 
-#dgkrwywdji .gt_from_md > :first-child {
+#pdgyjqxory .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#dgkrwywdji .gt_from_md > :last-child {
+#pdgyjqxory .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#dgkrwywdji .gt_row {
+#pdgyjqxory .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -777,7 +787,7 @@ F-statistic: 23.44 on 8 and 61 DF,  p-value: 6.283e-16</code></pre>
   overflow-x: hidden;
 }
 
-#dgkrwywdji .gt_stub {
+#pdgyjqxory .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -790,7 +800,7 @@ F-statistic: 23.44 on 8 and 61 DF,  p-value: 6.283e-16</code></pre>
   padding-right: 5px;
 }
 
-#dgkrwywdji .gt_stub_row_group {
+#pdgyjqxory .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -804,15 +814,15 @@ F-statistic: 23.44 on 8 and 61 DF,  p-value: 6.283e-16</code></pre>
   vertical-align: top;
 }
 
-#dgkrwywdji .gt_row_group_first td {
+#pdgyjqxory .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#dgkrwywdji .gt_row_group_first th {
+#pdgyjqxory .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#dgkrwywdji .gt_summary_row {
+#pdgyjqxory .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -822,16 +832,16 @@ F-statistic: 23.44 on 8 and 61 DF,  p-value: 6.283e-16</code></pre>
   padding-right: 5px;
 }
 
-#dgkrwywdji .gt_first_summary_row {
+#pdgyjqxory .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#dgkrwywdji .gt_first_summary_row.thick {
+#pdgyjqxory .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#dgkrwywdji .gt_last_summary_row {
+#pdgyjqxory .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -841,7 +851,7 @@ F-statistic: 23.44 on 8 and 61 DF,  p-value: 6.283e-16</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#dgkrwywdji .gt_grand_summary_row {
+#pdgyjqxory .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -851,7 +861,7 @@ F-statistic: 23.44 on 8 and 61 DF,  p-value: 6.283e-16</code></pre>
   padding-right: 5px;
 }
 
-#dgkrwywdji .gt_first_grand_summary_row {
+#pdgyjqxory .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -861,7 +871,7 @@ F-statistic: 23.44 on 8 and 61 DF,  p-value: 6.283e-16</code></pre>
   border-top-color: #D3D3D3;
 }
 
-#dgkrwywdji .gt_last_grand_summary_row_top {
+#pdgyjqxory .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -871,11 +881,11 @@ F-statistic: 23.44 on 8 and 61 DF,  p-value: 6.283e-16</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#dgkrwywdji .gt_striped {
+#pdgyjqxory .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#dgkrwywdji .gt_table_body {
+#pdgyjqxory .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -884,7 +894,7 @@ F-statistic: 23.44 on 8 and 61 DF,  p-value: 6.283e-16</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-#dgkrwywdji .gt_footnotes {
+#pdgyjqxory .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -898,7 +908,7 @@ F-statistic: 23.44 on 8 and 61 DF,  p-value: 6.283e-16</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#dgkrwywdji .gt_footnote {
+#pdgyjqxory .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -907,7 +917,7 @@ F-statistic: 23.44 on 8 and 61 DF,  p-value: 6.283e-16</code></pre>
   padding-right: 5px;
 }
 
-#dgkrwywdji .gt_sourcenotes {
+#pdgyjqxory .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -921,7 +931,7 @@ F-statistic: 23.44 on 8 and 61 DF,  p-value: 6.283e-16</code></pre>
   border-right-color: #D3D3D3;
 }
 
-#dgkrwywdji .gt_sourcenote {
+#pdgyjqxory .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -929,63 +939,63 @@ F-statistic: 23.44 on 8 and 61 DF,  p-value: 6.283e-16</code></pre>
   padding-right: 5px;
 }
 
-#dgkrwywdji .gt_left {
+#pdgyjqxory .gt_left {
   text-align: left;
 }
 
-#dgkrwywdji .gt_center {
+#pdgyjqxory .gt_center {
   text-align: center;
 }
 
-#dgkrwywdji .gt_right {
+#pdgyjqxory .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#dgkrwywdji .gt_font_normal {
+#pdgyjqxory .gt_font_normal {
   font-weight: normal;
 }
 
-#dgkrwywdji .gt_font_bold {
+#pdgyjqxory .gt_font_bold {
   font-weight: bold;
 }
 
-#dgkrwywdji .gt_font_italic {
+#pdgyjqxory .gt_font_italic {
   font-style: italic;
 }
 
-#dgkrwywdji .gt_super {
+#pdgyjqxory .gt_super {
   font-size: 65%;
 }
 
-#dgkrwywdji .gt_footnote_marks {
+#pdgyjqxory .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#dgkrwywdji .gt_asterisk {
+#pdgyjqxory .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#dgkrwywdji .gt_indent_1 {
+#pdgyjqxory .gt_indent_1 {
   text-indent: 5px;
 }
 
-#dgkrwywdji .gt_indent_2 {
+#pdgyjqxory .gt_indent_2 {
   text-indent: 10px;
 }
 
-#dgkrwywdji .gt_indent_3 {
+#pdgyjqxory .gt_indent_3 {
   text-indent: 15px;
 }
 
-#dgkrwywdji .gt_indent_4 {
+#pdgyjqxory .gt_indent_4 {
   text-indent: 20px;
 }
 
-#dgkrwywdji .gt_indent_5 {
+#pdgyjqxory .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1073,15 +1083,15 @@ F-statistic: 23.44 on 8 and 61 DF,  p-value: 6.283e-16</code></pre>
   
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>tinytable_jt3qkbzs9q0wapo92uoy</title>
+    <title>tinytable_pktityyif9bkg3cl05wk</title>
     <style>
-.table td.tinytable_css_wuq5zoinpajlm5kk78jg, .table th.tinytable_css_wuq5zoinpajlm5kk78jg {    border-bottom: solid 0.1em #d3d8dc; }
-.table td.tinytable_css_fo941s9ufxe5qt6bio0o, .table th.tinytable_css_fo941s9ufxe5qt6bio0o {    text-align: left; }
-.table td.tinytable_css_bprz89qq53602va40puy, .table th.tinytable_css_bprz89qq53602va40puy {    text-align: center; }
-.table td.tinytable_css_f7a28jc4fv1xztkcow60, .table th.tinytable_css_f7a28jc4fv1xztkcow60 {    text-align: center; }
-.table td.tinytable_css_of05a0g1ihwymqv8vi7h, .table th.tinytable_css_of05a0g1ihwymqv8vi7h {    text-align: center; }
-.table td.tinytable_css_e8qn6wqgmudwarthse0o, .table th.tinytable_css_e8qn6wqgmudwarthse0o {    text-align: center; }
-.table td.tinytable_css_bn491fgg9l2q1c8blisj, .table th.tinytable_css_bn491fgg9l2q1c8blisj {    border-bottom: solid 0.05em black; }
+.table td.tinytable_css_l7fgldif6kvl2hzktm04, .table th.tinytable_css_l7fgldif6kvl2hzktm04 {    border-bottom: solid 0.1em #d3d8dc; }
+.table td.tinytable_css_m33zdlrh64uuhdgww6af, .table th.tinytable_css_m33zdlrh64uuhdgww6af {    text-align: left; }
+.table td.tinytable_css_8xcd200h1jnszfmbf3fy, .table th.tinytable_css_8xcd200h1jnszfmbf3fy {    text-align: center; }
+.table td.tinytable_css_769y9t70wzliztph7kl7, .table th.tinytable_css_769y9t70wzliztph7kl7 {    text-align: center; }
+.table td.tinytable_css_b71izkint8z3w43fw5ml, .table th.tinytable_css_b71izkint8z3w43fw5ml {    text-align: center; }
+.table td.tinytable_css_sihehwwczg1j3o19ukor, .table th.tinytable_css_sihehwwczg1j3o19ukor {    text-align: center; }
+.table td.tinytable_css_1xdoq5i1gli0gscdppek, .table th.tinytable_css_1xdoq5i1gli0gscdppek {    border-bottom: solid 0.05em black; }
     </style>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -1099,7 +1109,7 @@ F-statistic: 23.44 on 8 and 61 DF,  p-value: 6.283e-16</code></pre>
 
   
     <div class="container">
-      <table class="table table-borderless" id="tinytable_jt3qkbzs9q0wapo92uoy" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+      <table class="table table-borderless" id="tinytable_pktityyif9bkg3cl05wk" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
         <thead>
         
               <tr>
@@ -1292,12 +1302,12 @@ F-statistic: 23.44 on 8 and 61 DF,  p-value: 6.283e-16</code></pre>
     </div>
 
     <script>
-      function styleCell_tinytable_rgaxnel9df7e9hhnnwnf(i, j, css_id) {
-        var table = document.getElementById("tinytable_jt3qkbzs9q0wapo92uoy");
+      function styleCell_tinytable_ui15m55ph47xsoarlh75(i, j, css_id) {
+        var table = document.getElementById("tinytable_pktityyif9bkg3cl05wk");
         table.rows[i].cells[j].classList.add(css_id);
       }
       function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_jt3qkbzs9q0wapo92uoy');
+        var table = document.getElementById('tinytable_pktityyif9bkg3cl05wk');
         var newRow = table.insertRow(i);
         var newCell = newRow.insertCell(0);
         newCell.setAttribute("colspan", colspan);
@@ -1305,8 +1315,8 @@ F-statistic: 23.44 on 8 and 61 DF,  p-value: 6.283e-16</code></pre>
         // this may be unsafe, but innerText does not interpret <br>
         newCell.innerHTML = content;
       }
-      function spanCell_tinytable_rgaxnel9df7e9hhnnwnf(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_jt3qkbzs9q0wapo92uoy");
+      function spanCell_tinytable_ui15m55ph47xsoarlh75(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_pktityyif9bkg3cl05wk");
         const targetRow = table.rows[i];
         const targetCell = targetRow.cells[j];
         for (let r = 0; r < rowspan; r++) {
@@ -1333,146 +1343,146 @@ F-statistic: 23.44 on 8 and 61 DF,  p-value: 6.283e-16</code></pre>
         targetCell.colSpan = colspan;
       }
 
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(0, 0, 'tinytable_css_wuq5zoinpajlm5kk78jg') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(0, 1, 'tinytable_css_wuq5zoinpajlm5kk78jg') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(0, 2, 'tinytable_css_wuq5zoinpajlm5kk78jg') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(0, 3, 'tinytable_css_wuq5zoinpajlm5kk78jg') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(0, 4, 'tinytable_css_wuq5zoinpajlm5kk78jg') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(0, 0, 'tinytable_css_fo941s9ufxe5qt6bio0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(1, 0, 'tinytable_css_fo941s9ufxe5qt6bio0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(2, 0, 'tinytable_css_fo941s9ufxe5qt6bio0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(3, 0, 'tinytable_css_fo941s9ufxe5qt6bio0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(4, 0, 'tinytable_css_fo941s9ufxe5qt6bio0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(5, 0, 'tinytable_css_fo941s9ufxe5qt6bio0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(6, 0, 'tinytable_css_fo941s9ufxe5qt6bio0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(7, 0, 'tinytable_css_fo941s9ufxe5qt6bio0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(8, 0, 'tinytable_css_fo941s9ufxe5qt6bio0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(9, 0, 'tinytable_css_fo941s9ufxe5qt6bio0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(10, 0, 'tinytable_css_fo941s9ufxe5qt6bio0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(11, 0, 'tinytable_css_fo941s9ufxe5qt6bio0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(12, 0, 'tinytable_css_fo941s9ufxe5qt6bio0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(13, 0, 'tinytable_css_fo941s9ufxe5qt6bio0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(14, 0, 'tinytable_css_fo941s9ufxe5qt6bio0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(15, 0, 'tinytable_css_fo941s9ufxe5qt6bio0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(16, 0, 'tinytable_css_fo941s9ufxe5qt6bio0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(17, 0, 'tinytable_css_fo941s9ufxe5qt6bio0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(18, 0, 'tinytable_css_fo941s9ufxe5qt6bio0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(19, 0, 'tinytable_css_fo941s9ufxe5qt6bio0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(20, 0, 'tinytable_css_fo941s9ufxe5qt6bio0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(21, 0, 'tinytable_css_fo941s9ufxe5qt6bio0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(22, 0, 'tinytable_css_fo941s9ufxe5qt6bio0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(23, 0, 'tinytable_css_fo941s9ufxe5qt6bio0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(24, 0, 'tinytable_css_fo941s9ufxe5qt6bio0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(25, 0, 'tinytable_css_fo941s9ufxe5qt6bio0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(0, 1, 'tinytable_css_bprz89qq53602va40puy') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(1, 1, 'tinytable_css_bprz89qq53602va40puy') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(2, 1, 'tinytable_css_bprz89qq53602va40puy') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(3, 1, 'tinytable_css_bprz89qq53602va40puy') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(4, 1, 'tinytable_css_bprz89qq53602va40puy') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(5, 1, 'tinytable_css_bprz89qq53602va40puy') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(6, 1, 'tinytable_css_bprz89qq53602va40puy') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(7, 1, 'tinytable_css_bprz89qq53602va40puy') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(8, 1, 'tinytable_css_bprz89qq53602va40puy') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(9, 1, 'tinytable_css_bprz89qq53602va40puy') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(10, 1, 'tinytable_css_bprz89qq53602va40puy') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(11, 1, 'tinytable_css_bprz89qq53602va40puy') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(12, 1, 'tinytable_css_bprz89qq53602va40puy') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(13, 1, 'tinytable_css_bprz89qq53602va40puy') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(14, 1, 'tinytable_css_bprz89qq53602va40puy') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(15, 1, 'tinytable_css_bprz89qq53602va40puy') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(16, 1, 'tinytable_css_bprz89qq53602va40puy') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(17, 1, 'tinytable_css_bprz89qq53602va40puy') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(18, 1, 'tinytable_css_bprz89qq53602va40puy') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(19, 1, 'tinytable_css_bprz89qq53602va40puy') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(20, 1, 'tinytable_css_bprz89qq53602va40puy') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(21, 1, 'tinytable_css_bprz89qq53602va40puy') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(22, 1, 'tinytable_css_bprz89qq53602va40puy') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(23, 1, 'tinytable_css_bprz89qq53602va40puy') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(24, 1, 'tinytable_css_bprz89qq53602va40puy') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(25, 1, 'tinytable_css_bprz89qq53602va40puy') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(0, 2, 'tinytable_css_f7a28jc4fv1xztkcow60') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(1, 2, 'tinytable_css_f7a28jc4fv1xztkcow60') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(2, 2, 'tinytable_css_f7a28jc4fv1xztkcow60') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(3, 2, 'tinytable_css_f7a28jc4fv1xztkcow60') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(4, 2, 'tinytable_css_f7a28jc4fv1xztkcow60') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(5, 2, 'tinytable_css_f7a28jc4fv1xztkcow60') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(6, 2, 'tinytable_css_f7a28jc4fv1xztkcow60') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(7, 2, 'tinytable_css_f7a28jc4fv1xztkcow60') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(8, 2, 'tinytable_css_f7a28jc4fv1xztkcow60') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(9, 2, 'tinytable_css_f7a28jc4fv1xztkcow60') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(10, 2, 'tinytable_css_f7a28jc4fv1xztkcow60') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(11, 2, 'tinytable_css_f7a28jc4fv1xztkcow60') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(12, 2, 'tinytable_css_f7a28jc4fv1xztkcow60') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(13, 2, 'tinytable_css_f7a28jc4fv1xztkcow60') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(14, 2, 'tinytable_css_f7a28jc4fv1xztkcow60') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(15, 2, 'tinytable_css_f7a28jc4fv1xztkcow60') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(16, 2, 'tinytable_css_f7a28jc4fv1xztkcow60') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(17, 2, 'tinytable_css_f7a28jc4fv1xztkcow60') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(18, 2, 'tinytable_css_f7a28jc4fv1xztkcow60') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(19, 2, 'tinytable_css_f7a28jc4fv1xztkcow60') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(20, 2, 'tinytable_css_f7a28jc4fv1xztkcow60') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(21, 2, 'tinytable_css_f7a28jc4fv1xztkcow60') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(22, 2, 'tinytable_css_f7a28jc4fv1xztkcow60') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(23, 2, 'tinytable_css_f7a28jc4fv1xztkcow60') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(24, 2, 'tinytable_css_f7a28jc4fv1xztkcow60') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(25, 2, 'tinytable_css_f7a28jc4fv1xztkcow60') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(0, 3, 'tinytable_css_of05a0g1ihwymqv8vi7h') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(1, 3, 'tinytable_css_of05a0g1ihwymqv8vi7h') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(2, 3, 'tinytable_css_of05a0g1ihwymqv8vi7h') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(3, 3, 'tinytable_css_of05a0g1ihwymqv8vi7h') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(4, 3, 'tinytable_css_of05a0g1ihwymqv8vi7h') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(5, 3, 'tinytable_css_of05a0g1ihwymqv8vi7h') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(6, 3, 'tinytable_css_of05a0g1ihwymqv8vi7h') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(7, 3, 'tinytable_css_of05a0g1ihwymqv8vi7h') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(8, 3, 'tinytable_css_of05a0g1ihwymqv8vi7h') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(9, 3, 'tinytable_css_of05a0g1ihwymqv8vi7h') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(10, 3, 'tinytable_css_of05a0g1ihwymqv8vi7h') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(11, 3, 'tinytable_css_of05a0g1ihwymqv8vi7h') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(12, 3, 'tinytable_css_of05a0g1ihwymqv8vi7h') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(13, 3, 'tinytable_css_of05a0g1ihwymqv8vi7h') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(14, 3, 'tinytable_css_of05a0g1ihwymqv8vi7h') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(15, 3, 'tinytable_css_of05a0g1ihwymqv8vi7h') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(16, 3, 'tinytable_css_of05a0g1ihwymqv8vi7h') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(17, 3, 'tinytable_css_of05a0g1ihwymqv8vi7h') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(18, 3, 'tinytable_css_of05a0g1ihwymqv8vi7h') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(19, 3, 'tinytable_css_of05a0g1ihwymqv8vi7h') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(20, 3, 'tinytable_css_of05a0g1ihwymqv8vi7h') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(21, 3, 'tinytable_css_of05a0g1ihwymqv8vi7h') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(22, 3, 'tinytable_css_of05a0g1ihwymqv8vi7h') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(23, 3, 'tinytable_css_of05a0g1ihwymqv8vi7h') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(24, 3, 'tinytable_css_of05a0g1ihwymqv8vi7h') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(25, 3, 'tinytable_css_of05a0g1ihwymqv8vi7h') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(0, 4, 'tinytable_css_e8qn6wqgmudwarthse0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(1, 4, 'tinytable_css_e8qn6wqgmudwarthse0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(2, 4, 'tinytable_css_e8qn6wqgmudwarthse0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(3, 4, 'tinytable_css_e8qn6wqgmudwarthse0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(4, 4, 'tinytable_css_e8qn6wqgmudwarthse0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(5, 4, 'tinytable_css_e8qn6wqgmudwarthse0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(6, 4, 'tinytable_css_e8qn6wqgmudwarthse0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(7, 4, 'tinytable_css_e8qn6wqgmudwarthse0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(8, 4, 'tinytable_css_e8qn6wqgmudwarthse0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(9, 4, 'tinytable_css_e8qn6wqgmudwarthse0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(10, 4, 'tinytable_css_e8qn6wqgmudwarthse0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(11, 4, 'tinytable_css_e8qn6wqgmudwarthse0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(12, 4, 'tinytable_css_e8qn6wqgmudwarthse0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(13, 4, 'tinytable_css_e8qn6wqgmudwarthse0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(14, 4, 'tinytable_css_e8qn6wqgmudwarthse0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(15, 4, 'tinytable_css_e8qn6wqgmudwarthse0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(16, 4, 'tinytable_css_e8qn6wqgmudwarthse0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(17, 4, 'tinytable_css_e8qn6wqgmudwarthse0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(18, 4, 'tinytable_css_e8qn6wqgmudwarthse0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(19, 4, 'tinytable_css_e8qn6wqgmudwarthse0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(20, 4, 'tinytable_css_e8qn6wqgmudwarthse0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(21, 4, 'tinytable_css_e8qn6wqgmudwarthse0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(22, 4, 'tinytable_css_e8qn6wqgmudwarthse0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(23, 4, 'tinytable_css_e8qn6wqgmudwarthse0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(24, 4, 'tinytable_css_e8qn6wqgmudwarthse0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(25, 4, 'tinytable_css_e8qn6wqgmudwarthse0o') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(18, 0, 'tinytable_css_bn491fgg9l2q1c8blisj') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(18, 1, 'tinytable_css_bn491fgg9l2q1c8blisj') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(18, 2, 'tinytable_css_bn491fgg9l2q1c8blisj') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(18, 3, 'tinytable_css_bn491fgg9l2q1c8blisj') })
-window.addEventListener('load', function () { styleCell_tinytable_rgaxnel9df7e9hhnnwnf(18, 4, 'tinytable_css_bn491fgg9l2q1c8blisj') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(0, 0, 'tinytable_css_l7fgldif6kvl2hzktm04') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(0, 1, 'tinytable_css_l7fgldif6kvl2hzktm04') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(0, 2, 'tinytable_css_l7fgldif6kvl2hzktm04') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(0, 3, 'tinytable_css_l7fgldif6kvl2hzktm04') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(0, 4, 'tinytable_css_l7fgldif6kvl2hzktm04') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(0, 0, 'tinytable_css_m33zdlrh64uuhdgww6af') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(1, 0, 'tinytable_css_m33zdlrh64uuhdgww6af') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(2, 0, 'tinytable_css_m33zdlrh64uuhdgww6af') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(3, 0, 'tinytable_css_m33zdlrh64uuhdgww6af') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(4, 0, 'tinytable_css_m33zdlrh64uuhdgww6af') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(5, 0, 'tinytable_css_m33zdlrh64uuhdgww6af') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(6, 0, 'tinytable_css_m33zdlrh64uuhdgww6af') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(7, 0, 'tinytable_css_m33zdlrh64uuhdgww6af') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(8, 0, 'tinytable_css_m33zdlrh64uuhdgww6af') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(9, 0, 'tinytable_css_m33zdlrh64uuhdgww6af') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(10, 0, 'tinytable_css_m33zdlrh64uuhdgww6af') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(11, 0, 'tinytable_css_m33zdlrh64uuhdgww6af') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(12, 0, 'tinytable_css_m33zdlrh64uuhdgww6af') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(13, 0, 'tinytable_css_m33zdlrh64uuhdgww6af') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(14, 0, 'tinytable_css_m33zdlrh64uuhdgww6af') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(15, 0, 'tinytable_css_m33zdlrh64uuhdgww6af') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(16, 0, 'tinytable_css_m33zdlrh64uuhdgww6af') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(17, 0, 'tinytable_css_m33zdlrh64uuhdgww6af') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(18, 0, 'tinytable_css_m33zdlrh64uuhdgww6af') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(19, 0, 'tinytable_css_m33zdlrh64uuhdgww6af') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(20, 0, 'tinytable_css_m33zdlrh64uuhdgww6af') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(21, 0, 'tinytable_css_m33zdlrh64uuhdgww6af') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(22, 0, 'tinytable_css_m33zdlrh64uuhdgww6af') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(23, 0, 'tinytable_css_m33zdlrh64uuhdgww6af') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(24, 0, 'tinytable_css_m33zdlrh64uuhdgww6af') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(25, 0, 'tinytable_css_m33zdlrh64uuhdgww6af') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(0, 1, 'tinytable_css_8xcd200h1jnszfmbf3fy') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(1, 1, 'tinytable_css_8xcd200h1jnszfmbf3fy') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(2, 1, 'tinytable_css_8xcd200h1jnszfmbf3fy') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(3, 1, 'tinytable_css_8xcd200h1jnszfmbf3fy') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(4, 1, 'tinytable_css_8xcd200h1jnszfmbf3fy') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(5, 1, 'tinytable_css_8xcd200h1jnszfmbf3fy') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(6, 1, 'tinytable_css_8xcd200h1jnszfmbf3fy') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(7, 1, 'tinytable_css_8xcd200h1jnszfmbf3fy') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(8, 1, 'tinytable_css_8xcd200h1jnszfmbf3fy') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(9, 1, 'tinytable_css_8xcd200h1jnszfmbf3fy') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(10, 1, 'tinytable_css_8xcd200h1jnszfmbf3fy') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(11, 1, 'tinytable_css_8xcd200h1jnszfmbf3fy') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(12, 1, 'tinytable_css_8xcd200h1jnszfmbf3fy') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(13, 1, 'tinytable_css_8xcd200h1jnszfmbf3fy') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(14, 1, 'tinytable_css_8xcd200h1jnszfmbf3fy') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(15, 1, 'tinytable_css_8xcd200h1jnszfmbf3fy') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(16, 1, 'tinytable_css_8xcd200h1jnszfmbf3fy') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(17, 1, 'tinytable_css_8xcd200h1jnszfmbf3fy') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(18, 1, 'tinytable_css_8xcd200h1jnszfmbf3fy') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(19, 1, 'tinytable_css_8xcd200h1jnszfmbf3fy') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(20, 1, 'tinytable_css_8xcd200h1jnszfmbf3fy') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(21, 1, 'tinytable_css_8xcd200h1jnszfmbf3fy') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(22, 1, 'tinytable_css_8xcd200h1jnszfmbf3fy') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(23, 1, 'tinytable_css_8xcd200h1jnszfmbf3fy') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(24, 1, 'tinytable_css_8xcd200h1jnszfmbf3fy') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(25, 1, 'tinytable_css_8xcd200h1jnszfmbf3fy') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(0, 2, 'tinytable_css_769y9t70wzliztph7kl7') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(1, 2, 'tinytable_css_769y9t70wzliztph7kl7') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(2, 2, 'tinytable_css_769y9t70wzliztph7kl7') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(3, 2, 'tinytable_css_769y9t70wzliztph7kl7') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(4, 2, 'tinytable_css_769y9t70wzliztph7kl7') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(5, 2, 'tinytable_css_769y9t70wzliztph7kl7') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(6, 2, 'tinytable_css_769y9t70wzliztph7kl7') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(7, 2, 'tinytable_css_769y9t70wzliztph7kl7') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(8, 2, 'tinytable_css_769y9t70wzliztph7kl7') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(9, 2, 'tinytable_css_769y9t70wzliztph7kl7') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(10, 2, 'tinytable_css_769y9t70wzliztph7kl7') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(11, 2, 'tinytable_css_769y9t70wzliztph7kl7') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(12, 2, 'tinytable_css_769y9t70wzliztph7kl7') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(13, 2, 'tinytable_css_769y9t70wzliztph7kl7') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(14, 2, 'tinytable_css_769y9t70wzliztph7kl7') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(15, 2, 'tinytable_css_769y9t70wzliztph7kl7') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(16, 2, 'tinytable_css_769y9t70wzliztph7kl7') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(17, 2, 'tinytable_css_769y9t70wzliztph7kl7') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(18, 2, 'tinytable_css_769y9t70wzliztph7kl7') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(19, 2, 'tinytable_css_769y9t70wzliztph7kl7') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(20, 2, 'tinytable_css_769y9t70wzliztph7kl7') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(21, 2, 'tinytable_css_769y9t70wzliztph7kl7') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(22, 2, 'tinytable_css_769y9t70wzliztph7kl7') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(23, 2, 'tinytable_css_769y9t70wzliztph7kl7') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(24, 2, 'tinytable_css_769y9t70wzliztph7kl7') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(25, 2, 'tinytable_css_769y9t70wzliztph7kl7') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(0, 3, 'tinytable_css_b71izkint8z3w43fw5ml') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(1, 3, 'tinytable_css_b71izkint8z3w43fw5ml') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(2, 3, 'tinytable_css_b71izkint8z3w43fw5ml') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(3, 3, 'tinytable_css_b71izkint8z3w43fw5ml') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(4, 3, 'tinytable_css_b71izkint8z3w43fw5ml') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(5, 3, 'tinytable_css_b71izkint8z3w43fw5ml') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(6, 3, 'tinytable_css_b71izkint8z3w43fw5ml') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(7, 3, 'tinytable_css_b71izkint8z3w43fw5ml') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(8, 3, 'tinytable_css_b71izkint8z3w43fw5ml') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(9, 3, 'tinytable_css_b71izkint8z3w43fw5ml') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(10, 3, 'tinytable_css_b71izkint8z3w43fw5ml') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(11, 3, 'tinytable_css_b71izkint8z3w43fw5ml') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(12, 3, 'tinytable_css_b71izkint8z3w43fw5ml') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(13, 3, 'tinytable_css_b71izkint8z3w43fw5ml') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(14, 3, 'tinytable_css_b71izkint8z3w43fw5ml') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(15, 3, 'tinytable_css_b71izkint8z3w43fw5ml') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(16, 3, 'tinytable_css_b71izkint8z3w43fw5ml') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(17, 3, 'tinytable_css_b71izkint8z3w43fw5ml') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(18, 3, 'tinytable_css_b71izkint8z3w43fw5ml') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(19, 3, 'tinytable_css_b71izkint8z3w43fw5ml') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(20, 3, 'tinytable_css_b71izkint8z3w43fw5ml') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(21, 3, 'tinytable_css_b71izkint8z3w43fw5ml') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(22, 3, 'tinytable_css_b71izkint8z3w43fw5ml') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(23, 3, 'tinytable_css_b71izkint8z3w43fw5ml') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(24, 3, 'tinytable_css_b71izkint8z3w43fw5ml') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(25, 3, 'tinytable_css_b71izkint8z3w43fw5ml') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(0, 4, 'tinytable_css_sihehwwczg1j3o19ukor') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(1, 4, 'tinytable_css_sihehwwczg1j3o19ukor') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(2, 4, 'tinytable_css_sihehwwczg1j3o19ukor') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(3, 4, 'tinytable_css_sihehwwczg1j3o19ukor') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(4, 4, 'tinytable_css_sihehwwczg1j3o19ukor') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(5, 4, 'tinytable_css_sihehwwczg1j3o19ukor') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(6, 4, 'tinytable_css_sihehwwczg1j3o19ukor') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(7, 4, 'tinytable_css_sihehwwczg1j3o19ukor') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(8, 4, 'tinytable_css_sihehwwczg1j3o19ukor') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(9, 4, 'tinytable_css_sihehwwczg1j3o19ukor') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(10, 4, 'tinytable_css_sihehwwczg1j3o19ukor') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(11, 4, 'tinytable_css_sihehwwczg1j3o19ukor') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(12, 4, 'tinytable_css_sihehwwczg1j3o19ukor') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(13, 4, 'tinytable_css_sihehwwczg1j3o19ukor') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(14, 4, 'tinytable_css_sihehwwczg1j3o19ukor') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(15, 4, 'tinytable_css_sihehwwczg1j3o19ukor') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(16, 4, 'tinytable_css_sihehwwczg1j3o19ukor') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(17, 4, 'tinytable_css_sihehwwczg1j3o19ukor') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(18, 4, 'tinytable_css_sihehwwczg1j3o19ukor') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(19, 4, 'tinytable_css_sihehwwczg1j3o19ukor') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(20, 4, 'tinytable_css_sihehwwczg1j3o19ukor') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(21, 4, 'tinytable_css_sihehwwczg1j3o19ukor') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(22, 4, 'tinytable_css_sihehwwczg1j3o19ukor') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(23, 4, 'tinytable_css_sihehwwczg1j3o19ukor') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(24, 4, 'tinytable_css_sihehwwczg1j3o19ukor') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(25, 4, 'tinytable_css_sihehwwczg1j3o19ukor') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(18, 0, 'tinytable_css_1xdoq5i1gli0gscdppek') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(18, 1, 'tinytable_css_1xdoq5i1gli0gscdppek') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(18, 2, 'tinytable_css_1xdoq5i1gli0gscdppek') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(18, 3, 'tinytable_css_1xdoq5i1gli0gscdppek') })
+window.addEventListener('load', function () { styleCell_tinytable_ui15m55ph47xsoarlh75(18, 4, 'tinytable_css_1xdoq5i1gli0gscdppek') })
     </script>
 
   

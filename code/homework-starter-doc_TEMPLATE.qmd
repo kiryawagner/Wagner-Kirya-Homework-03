@@ -1,5 +1,7 @@
 ---
-title: "Homework starter document"
+title: "Homework 3"
+author: "Kirya Wagner"
+GitHub Link: "https://github.com/kiryawagner/Wagner-Kirya-Homework-03"
 format:
   html: 
     toc: true # includes a table of contents in rendered html format
@@ -102,11 +104,11 @@ ggpairs(drought_exp_clean, # data frame
 
 Choose 3 pairs of variables to compare. Make notes of those comparisons below.    
 
-**Leaf dry weight is weakly positively correlated with specific leaf area (Pearson's r = 0.033**  
+**Leaf dry weight is weakly and positively correlated with specific leaf area (Pearson's r = 0.033**  
 
-**Shoot mass and total mass are strongly positively correlated (Pearson's r = 0.902)**  
+**Shoot mass and total mass are strongly positively and correlated (Pearson's r = 0.902)**  
 
-**Leaf dry weight is strongly positively correlated with total mass (Pearson's r = 0.046**
+**Leaf dry weight is strongly and positively correlated with total mass (Pearson's r = 0.046**
 
 ## Preliminary visualizations  
 
@@ -129,14 +131,16 @@ ggplot(data = drought_exp_clean, # data frame
   geom_jitter(width = 0.1, # narrow jitter
               height = 0) # not jittering points up and down
 
-#one easy way to get out pattenrs is to reorder x axis in reverse order of mean total mass 
+# one easy way to get out patterns is to reorder x axis in reverse order of mean total mass 
 
 ```
 
-**Total biomass seemingly does differ between species  Gumweed, california poppy and purple needlegrass seem to have the highest biomass. Deerweed, scarlet buguler and purplse sage seem to have the lowest biomass.**
+**Total biomass seemingly does differ between species. Gumweed, California poppy and purple needlegrass seem to have the highest biomass. Deerweed, scarlet buguler and purplse sage seem to have the lowest biomass.**
+
 
 
 ### how does total biomass differ between water treatments?
+
 
 ```{r}
 ggplot(data = drought_exp_clean, # data frame
@@ -210,6 +214,7 @@ plot(model2)
 ```
 
 **LOOK AT DIAGNOSTICS**
+**Diagnostics look good**
 
 ## 3. total biomass as a function of SLA and species
 
@@ -221,6 +226,19 @@ plot(model3)
 ```
 
 **LOOK AT DIAGNOSTICS**
+**The QQ plot slightly derails from the line at the tails, but the diagnostics overall look okay. 
+
+## 4. total biomass as a function of water treatment and species
+
+```{r}
+model4 <- lm(total_g ~ water_treatment + species_name,
+             data = drought_exp_clean)
+
+plot(model3)
+```
+
+**LOOK AT DIAGNOSTICS**
+Diagnostics overall look okay. 
 
 # Model selection
 
@@ -232,10 +250,11 @@ From the `MuMIn` package
 model.sel(model0,
           model1, 
           model2, 
-          model3)
+          model3,
+          model4)
 ```
 
-Out of the four models we have tried, the best model is the one that includes **Specific leaf area, water treatment, and species (saturated models) 
+Out of the four models we have tried, the best model is **model 4, the one that includes biomass as a function water treatment and species**. This is because its delta is 0, and it has the lowest AIC. 
 
 **BEST model (balances explanatory power with complecity) is model 1, or the saturated model. Delta: difference between AIC of best and others. Always 0 for best model.**  
 **DOUBLE CHECK DIAGNOSTICS FOR BEST MODEL**
@@ -262,6 +281,7 @@ Interpret the model estimates for the:
 - intercept: **mass of the reference (Acmispon glaber) in drought stressed water treatment when SLA = 0**  
 - SLA slope: **for each 1 unit incresase in SLA (mm^2^/g), you expect a decrease in plant mass of 0.002 +- (figure out how to display plus minus in doc) 0.005. NO EFFECT OF SLA ON MASS EVEN THOUGH CHOSEN AS BEST MODEL**  
 - well watered estimate: **on average across species and SLA, well watered plants tend to be 0.12 +- 0.02g heavier than drought stressed plants. Water treatment signficantly predicts total mass (with p)**    
+
 - Lotus scoparius estimate: **insert response here**    
 - Stipa pulchra estimate: **insert response here**    
 
@@ -274,6 +294,8 @@ model_preds <- ggpredict(model1,
                          terms = c("sla",
                                    "water_treatment", 
                                    "species_name"))
+
+view(model_preds)
 
 # use View(model_preds) to see the predictions as a data frame
 # use model_preds to see the predictions formatted nicely
