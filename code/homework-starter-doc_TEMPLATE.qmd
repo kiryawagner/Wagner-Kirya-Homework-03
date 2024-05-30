@@ -234,7 +234,7 @@ plot(model3)
 model4 <- lm(total_g ~ water_treatment + species_name,
              data = drought_exp_clean)
 
-plot(model3)
+plot(model4)
 ```
 
 **LOOK AT DIAGNOSTICS**
@@ -295,6 +295,46 @@ view(model_preds)
 # Visualization
 
 **Note:** this is the quick way to visualize model predictions. For your homework, you may find it easier to plot things yourself (i.e. not using the `plot()` functionality within `ggeffects`). See lecture for an example of how to do this.  
+
+```{r model-predictions-with-ggeffects}
+# creating new data frame of model predictions for plotting
+model_preds_for_plotting <- model_preds %>% 
+  rename(water_treatment = x,
+         species = group) # renaming columns to make this easier to use
+
+ggplot() +
+  # underlying data
+  geom_point(data = drought_exp_clean,
+             aes(x = water_treatment,
+                 y = total_g,
+                 color = water_treatment,
+                  alpha = 0.3)) +
+  # model prediction 95% CI ribbon
+  geom_ribbon(data = model_preds_for_plotting,
+              aes(x = water_treatment, 
+                  y = predicted,
+                  ymin = conf.low,
+                  ymax = conf.high,
+                  fill = water_treatment)) +
+  # model prediction lines
+  geom_line(data = model_preds_for_plotting,
+            aes(x = water_treatment, 
+                y = predicted,
+                color = water_treatment)) +
+  # cleaner theme
+  theme_classic() +
+  theme(legend.position = "none") +
+  scale_color_manual(values = c("cornflowerblue", "violet")) + # giving each water type a different color 
+  
+  # creating different panels for species
+  facet_wrap(~species_name) +
+  
+  labs(x = "Water Treatment", # naming x axis 
+     y = "Total Mass (g)", # naming y axis
+     title = "Total Mass of Species with Different Water Treatments ") # making a title
+
+```
+
 
 
 # Making a table
