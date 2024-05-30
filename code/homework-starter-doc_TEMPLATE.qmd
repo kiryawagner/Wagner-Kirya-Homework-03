@@ -242,11 +242,11 @@ Diagnostics overall look okay.
 
 # Model selection
 
-From the `MuMIn` package
+
 
 ```{r}
 # compare functions 
-# "multi model inference"
+
 model.sel(model0,
           model1, 
           model2, 
@@ -292,9 +292,41 @@ view(model_preds)
 # use model_preds to see the predictions formatted nicely
 ```
 
-# Visualization
 
-**Note:** this is the quick way to visualize model predictions. For your homework, you may find it easier to plot things yourself (i.e. not using the `plot()` functionality within `ggeffects`). See lecture for an example of how to do this.  
+
+# Making a table
+
+Table 1: Table displaying model estimates for the null and models 1-4.
+
+```{r}
+
+# comparing models
+modelsummary::modelsummary # this function takes a list of models
+  list( 
+    "null" = model0, # "model name" = model object
+    "model 1" = model1,
+    "model 2" = model2,
+    "model 3" = model3,
+    "model 4" = model4)
+
+```
+
+**Note 1: notice all the information at the bottom of the `modelsummary` output - if you only needed the AIC and delta AIC, what could you do? see package documentation for help**
+
+**Note 2: you will always have to report the F-statistic, degrees of freedom, test statistic, p-value, ⍺, and R^2^. Whether or not this information is in a table is up to you.**
+
+
+## statistical methods 
+
+In this statistical analysis, I examined the influence of specific leaf area (SLA), species, and water treatment on total growth (g) of the plant by constructing a set of 5 models that compared each variable. 
+
+These included total biomass as a function of none of the predictors, total biomass as a function of SLA, water treatment and species, total biomass as a function of SLA and water treatment, total biomass as a function of SLA and species, and total biomass as a function of water treatment and species. 
+
+First, I visualized the variables individually against total mass and determined that there seemingly was a correlation between each one. Then I created the models using lm(), and looked at the residuals, distributions, and outlines within their diagnostics to determine if the model was "valid", or "usable". 
+Next, I compared each model using model.sel(), and determined which one was the best based on their diagnostics and coefficients. The best model not only has a lower AIC and delta of 0, but also visually needs homeostatic residuals, a normal distribution and no influential outliers in their diagnostics. Model 4 met all of these requirements 
+
+
+# Visualization
 
 ```{r model-predictions-with-ggeffects}
 # creating new data frame of model predictions for plotting
@@ -309,18 +341,13 @@ ggplot() +
                  y = total_g,
                  color = water_treatment,
                   alpha = 0.3)) +
-  # model prediction 95% CI ribbon
-  geom_ribbon(data = model_preds_for_plotting,
-              aes(x = water_treatment, 
-                  y = predicted,
-                  ymin = conf.low,
-                  ymax = conf.high,
-                  fill = water_treatment)) +
+
   # model prediction lines
   geom_line(data = model_preds_for_plotting,
             aes(x = water_treatment, 
                 y = predicted,
                 color = water_treatment)) +
+  
   # cleaner theme
   theme_classic() +
   theme(legend.position = "none") +
@@ -334,31 +361,8 @@ ggplot() +
      title = "Total Mass of Species with Different Water Treatments ") # making a title
 
 ```
+Figure 1: Jitter plot visualizing the total mass of plant species in well watered vs drought stressed water treatments. Well watered plants were represented with blue while drought stressed plants are represented with pink. Large opague dots represent the mean total mass (g). Lines represent model predition lines. Trasnparent dots represent underlying data. 
 
+Source: Valliere JM, Zhang J, Sharifi MR, Rundel PW. Can we condition native plants to increase drought tolerance and improve restoration success? Ecol Appl. 2019 Apr;29(3):e01863. doi: 10.1002/eap.1863. Epub 2019 Mar 4. PMID: 30831005.
 
-
-# Making a table
-
-```{r}
-# one option for a single model
-flextable::as_flextable(model1) 
-
-# another option for a single model
-gtsummary::tbl_regression(model1)
-
-# comparing models
-modelsummary::modelsummary( # this function takes a list of models
-  list( 
-    "null" = model0, # "model name" = model object
-    "model 1" = model1,
-    "model 2" = model2,
-    "model 3" = model3
-  )
-) 
-
-```
-
-**Note 1: notice all the information at the bottom of the `modelsummary` output - if you only needed the AIC and delta AIC, what could you do? see package documentation for help**
-
-**Note 2: you will always have to report the F-statistic, degrees of freedom, test statistic, p-value, ⍺, and R^2^. Whether or not this information is in a table is up to you.**
 
