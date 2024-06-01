@@ -1,0 +1,48 @@
+Observation_#,Date,Time_left_from_previous_location,Arrival_time,Mins_earlylate,Day_of_the_Week,Class_Location,distance_to_class,Mode_of_Transportation
+1,4/19,8:43,8:53,7,Friday,Grivetz,0.8,Bike
+2,4/22,7:35,7:45,10,Monday,Campbell,1,Bike
+3,4/22,12:17,12:28,3,Monday,Grivetz,0.8,Bike
+4,4/23,12:18,12:23,7,Tuesday,Embarcedero,0.3,Bike
+5,4/24,7:46,7:52,8,Wednesday,Campbell,0.9,Bike
+7,4/24,2:48,2:54,6,Wednesday ,Life Science ,1,Bike
+8,4/25,12:21,12:25,5,Thursday,Embarcedero,0.133,Walk
+9,4/25,4:52,4:58,2,Thursday,ILP,0.2,Walk
+10,4/26,7:45,7:55,5,Friday,Campbell,1,Bike
+11,4/26,8:54,8:58,2,Friday,Grivetz,0.3,Walk
+12,4/29,7:44,7:53,7,Monday,Campbell,1,Bike
+13,4/29,12:17,12:25,5,Monday,Grivetz,0.8,Bike
+14,4/30,12:22,12:26,4,Tuesday,Embarcedero,0.133,Walk
+15,5/1,7:47,7:55,5,Wednesday,Campbell,1,Bike
+16,5/1,12:18,12:26,4,Wednesday,Grivetz,0.8,Bike
+17,5/1,2:52,2:56,4,Wednesday,Life Science ,0.2,Walk
+18,5/2,12:22,12:26,4,Thursday ,Embarcedero,0.133,Walk
+19,5/2,4:38,4:56,4,Thursday,ILP,0.8,Walk
+20,5/3,7:44,7:52,8,Friday,Campbell,1,Bike
+21,5/3,8:50,8:59,1,Friday,Grivetz,0.3,Walk
+22,5/6,7:44,7:52,7,Monday,Campbell,1,Bike
+23,5/6,12:21,12:29,1,Monday,Grivetz,0.8,Bike
+24,5/7,12:23,12:27,3,Tuesday,Embarcedero,0.133,Walk
+25,5/8,7:44,7:53,7,Wednesday,Campbell,1,Bike
+26,5/8,12:17,12:27,3,Wednesday,Grivetz,0.8,Bike
+27,5/8,2:50,2:55,5,Wednesday,Life Science,0.2,Walk
+28,5/9,12:22,12:28,2,Thursday,Embarcedero,0.133,Bike
+29,5/10,7:46,7:56,4,Friday,Campbell,1,Bike
+30,5/10,8:18,18:27,3,Friday,Grivetz,0.3,Walk
+31,5/14,12:23,12:27,3,Tuesday ,Embarcedero,0.133,Walk
+32,5/15,7:47,7:54,6,Wednesday,Campbell,1,Bike
+33,5/15,12:19,12:27,3,Wednesday,Grivetz ,0.8,Bike
+34,5/15,12:50,12:55,6,Wednesday,Life Science ,0.2,Walk
+35,5/16,12:22,12:27,3,Thursday,Embarcedero,0.133,Walk
+36,5/16,4:47,4:57,3,Thursday,ILP,0.8,Bike
+37,5/17,7:46,7:57,3,Friday,Campbell,1,Bike
+38,5/17,8:48,8:26,4,Friday,Grivetz ,0.3,Walk
+39,5/20,7:46,7:57,3,Monday,Campbell,1,Bike
+40,5/21,12:19,12:28,2,Monday,Grivetz ,0.8,Bike
+41,5/22,2:54,2:58,2,Wednesday,Life Science,0.3,Walk
+42,5/23,12:21,12:26,4,Thursday,Embarcedero ,0.133,Walk
+43,5/23,4:49,4:58,2,Thursday,ILP,0.8,Bike
+44,5/24,4:45,4:55,5,Friday,Campbell,1,Bike
+45,5/24,8:50,8:58,2,Friday,Grivetz ,0.3,Walk
+46,5/28,12:22,12:27,3,Tuesday,Embarcedero ,0.133,Walk
+47,5/29,7:47,7:53,7,Wednesday,Campbell,1,Bike
+48,5/29,12:16,12:28,2,Wednesday,Grivetz ,0.8,Walk

@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Kirya Wagner">
+
+<title>Homework 3</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="Homework 3_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Homework 3_files/libs/quarto-html/quarto.js"></script>
+<script src="Homework 3_files/libs/quarto-html/popper.min.js"></script>
+<script src="Homework 3_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Homework 3_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Homework 3_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Homework 3_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Homework 3_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Homework 3_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Homework 3_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#problem-1" id="toc-problem-1" class="nav-link active" data-scroll-target="#problem-1">Problem 1</a>
+  <ul class="collapse">
+  <li><a href="#a.-making-a-table" id="toc-a.-making-a-table" class="nav-link" data-scroll-target="#a.-making-a-table">a. Making a table</a></li>
+  <li><a href="#b.-statistical-methods" id="toc-b.-statistical-methods" class="nav-link" data-scroll-target="#b.-statistical-methods">b. Statistical methods</a></li>
+  <li><a href="#c.-visualization" id="toc-c.-visualization" class="nav-link" data-scroll-target="#c.-visualization">c.&nbsp;Visualization</a></li>
+  <li><a href="#d.-figure-caption" id="toc-d.-figure-caption" class="nav-link" data-scroll-target="#d.-figure-caption">d.&nbsp;Figure Caption</a></li>
+  <li><a href="#e.-results" id="toc-e.-results" class="nav-link" data-scroll-target="#e.-results">e. Results</a></li>
+  </ul></li>
+  <li><a href="#problem-2" id="toc-problem-2" class="nav-link" data-scroll-target="#problem-2">Problem 2</a>
+  <ul class="collapse">
+  <li><a href="#a." id="toc-a." class="nav-link" data-scroll-target="#a.">a.</a></li>
+  <li><a href="#b." id="toc-b." class="nav-link" data-scroll-target="#b.">b.</a></li>
+  <li><a href="#d." id="toc-d." class="nav-link" data-scroll-target="#d.">d.</a></li>
+  </ul></li>
+  <li><a href="#problem-3" id="toc-problem-3" class="nav-link" data-scroll-target="#problem-3">Problem 3</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Homework 3</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Kirya Wagner </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="problem-1" class="level1">
+<h1>Problem 1</h1>
+<section id="a.-making-a-table" class="level2">
+<h2 class="anchored" data-anchor-id="a.-making-a-table">a. Making a table</h2>
+<p>Table 1: Table displaying model estimates for the null and models 1-4.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># comparing models</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>modelsummary<span class="sc">::</span>modelsummary <span class="co"># this function takes a list of models</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>models <span class="ot">&lt;-</span> <span class="fu">list</span>( </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"null"</span> <span class="ot">=</span> model0, <span class="co"># "model name" = model object</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"model 1"</span> <span class="ot">=</span> model1,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"model 2"</span> <span class="ot">=</span> model2,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"model 3"</span> <span class="ot">=</span> model3,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"model 4"</span> <span class="ot">=</span> model4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+
+ 
+
+  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tinytable_d63u0rkzxoz7uef4enmf</title>
+    <style>
+.table td.tinytable_css_iarcnjcb4zlcrfmry6lr, .table th.tinytable_css_iarcnjcb4zlcrfmry6lr {    border-bottom: solid 0.1em #d3d8dc; }
+.table td.tinytable_css_w0crzs4cer83o73dq6h0, .table th.tinytable_css_w0crzs4cer83o73dq6h0 {    text-align: left; }
+.table td.tinytable_css_mcz9qy1mg5xpqe7djzc0, .table th.tinytable_css_mcz9qy1mg5xpqe7djzc0 {    text-align: center; }
+.table td.tinytable_css_ibpt9xb2m6jfar397c7i, .table th.tinytable_css_ibpt9xb2m6jfar397c7i {    text-align: center; }
+.table td.tinytable_css_okw55dxv4yiwpqt7v9q1, .table th.tinytable_css_okw55dxv4yiwpqt7v9q1 {    text-align: center; }
+.table td.tinytable_css_h720diydtlz6to8b5wwh, .table th.tinytable_css_h720diydtlz6to8b5wwh {    text-align: center; }
+.table td.tinytable_css_9ncp8cmuhgs2ps4jj7wk, .table th.tinytable_css_9ncp8cmuhgs2ps4jj7wk {    text-align: center; }
+.table td.tinytable_css_55yw7beg92gfacdbzcsp, .table th.tinytable_css_55yw7beg92gfacdbzcsp {    border-bottom: solid 0.05em black; }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+  
+
+  
+    <div class="container">
+      <table class="table table-borderless" id="tinytable_d63u0rkzxoz7uef4enmf" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+        <thead>
+        
+              <tr>
+                <th scope="col"> </th>
+                <th scope="col">null</th>
+                <th scope="col">model 1</th>
+                <th scope="col">model 2</th>
+                <th scope="col">model 3</th>
+                <th scope="col">model 4</th>
+              </tr>
+        </thead>
+        
+        <tbody>
+                <tr>
+                  <td>(Intercept)                           </td>
+                  <td>0.279  </td>
+                  <td>0.080  </td>
+                  <td>0.047  </td>
+                  <td>-0.033 </td>
+                  <td>0.055  </td>
+                </tr>
+                <tr>
+                  <td>                                      </td>
+                  <td>(0.017)</td>
+                  <td>(0.056)</td>
+                  <td>(0.054)</td>
+                  <td>(0.067)</td>
+                  <td>(0.025)</td>
+                </tr>
+                <tr>
+                  <td>sla                                   </td>
+                  <td>       </td>
+                  <td>0.000  </td>
+                  <td>0.001  </td>
+                  <td>0.001  </td>
+                  <td>       </td>
+                </tr>
+                <tr>
+                  <td>                                      </td>
+                  <td>       </td>
+                  <td>(0.000)</td>
+                  <td>(0.000)</td>
+                  <td>(0.001)</td>
+                  <td>       </td>
+                </tr>
+                <tr>
+                  <td>water_treatmentWell watered           </td>
+                  <td>       </td>
+                  <td>0.122  </td>
+                  <td>0.090  </td>
+                  <td>       </td>
+                  <td>0.117  </td>
+                </tr>
+                <tr>
+                  <td>                                      </td>
+                  <td>       </td>
+                  <td>(0.020)</td>
+                  <td>(0.029)</td>
+                  <td>       </td>
+                  <td>(0.017)</td>
+                </tr>
+                <tr>
+                  <td>species_nameEncelia californica       </td>
+                  <td>       </td>
+                  <td>0.238  </td>
+                  <td>       </td>
+                  <td>0.115  </td>
+                  <td>0.218  </td>
+                </tr>
+                <tr>
+                  <td>                                      </td>
+                  <td>       </td>
+                  <td>(0.051)</td>
+                  <td>       </td>
+                  <td>(0.059)</td>
+                  <td>(0.032)</td>
+                </tr>
+                <tr>
+                  <td>species_nameEschscholzia californica  </td>
+                  <td>       </td>
+                  <td>0.234  </td>
+                  <td>       </td>
+                  <td>0.222  </td>
+                  <td>0.232  </td>
+                </tr>
+                <tr>
+                  <td>                                      </td>
+                  <td>       </td>
+                  <td>(0.033)</td>
+                  <td>       </td>
+                  <td>(0.041)</td>
+                  <td>(0.032)</td>
+                </tr>
+                <tr>
+                  <td>species_nameGrindelia camporum        </td>
+                  <td>       </td>
+                  <td>0.330  </td>
+                  <td>       </td>
+                  <td>0.226  </td>
+                  <td>0.313  </td>
+                </tr>
+                <tr>
+                  <td>                                      </td>
+                  <td>       </td>
+                  <td>(0.047)</td>
+                  <td>       </td>
+                  <td>(0.054)</td>
+                  <td>(0.032)</td>
+                </tr>
+                <tr>
+                  <td>species_nameNasella pulchra           </td>
+                  <td>       </td>
+                  <td>0.241  </td>
+                  <td>       </td>
+                  <td>0.168  </td>
+                  <td>0.229  </td>
+                </tr>
+                <tr>
+                  <td>                                      </td>
+                  <td>       </td>
+                  <td>(0.040)</td>
+                  <td>       </td>
+                  <td>(0.048)</td>
+                  <td>(0.032)</td>
+                </tr>
+                <tr>
+                  <td>species_namePenstemon centranthifolius</td>
+                  <td>       </td>
+                  <td>0.061  </td>
+                  <td>       </td>
+                  <td>-0.006 </td>
+                  <td>0.050  </td>
+                </tr>
+                <tr>
+                  <td>                                      </td>
+                  <td>       </td>
+                  <td>(0.039)</td>
+                  <td>       </td>
+                  <td>(0.047)</td>
+                  <td>(0.032)</td>
+                </tr>
+                <tr>
+                  <td>species_nameSalvia leucophylla        </td>
+                  <td>       </td>
+                  <td>0.117  </td>
+                  <td>       </td>
+                  <td>0.139  </td>
+                  <td>0.120  </td>
+                </tr>
+                <tr>
+                  <td>                                      </td>
+                  <td>       </td>
+                  <td>(0.033)</td>
+                  <td>       </td>
+                  <td>(0.041)</td>
+                  <td>(0.032)</td>
+                </tr>
+                <tr>
+                  <td>Num.Obs.                              </td>
+                  <td>70     </td>
+                  <td>70     </td>
+                  <td>70     </td>
+                  <td>70     </td>
+                  <td>70     </td>
+                </tr>
+                <tr>
+                  <td>R2                                    </td>
+                  <td>0.000  </td>
+                  <td>0.755  </td>
+                  <td>0.303  </td>
+                  <td>0.610  </td>
+                  <td>0.754  </td>
+                </tr>
+                <tr>
+                  <td>R2 Adj.                               </td>
+                  <td>0.000  </td>
+                  <td>0.722  </td>
+                  <td>0.282  </td>
+                  <td>0.566  </td>
+                  <td>0.726  </td>
+                </tr>
+                <tr>
+                  <td>AIC                                   </td>
+                  <td>-75.2  </td>
+                  <td>-157.5 </td>
+                  <td>-96.4  </td>
+                  <td>-127.1 </td>
+                  <td>-159.2 </td>
+                </tr>
+                <tr>
+                  <td>BIC                                   </td>
+                  <td>-70.7  </td>
+                  <td>-135.0 </td>
+                  <td>-87.4  </td>
+                  <td>-106.8 </td>
+                  <td>-139.0 </td>
+                </tr>
+                <tr>
+                  <td>Log.Lik.                              </td>
+                  <td>39.580 </td>
+                  <td>88.741 </td>
+                  <td>52.220 </td>
+                  <td>72.538 </td>
+                  <td>88.598 </td>
+                </tr>
+                <tr>
+                  <td>RMSE                                  </td>
+                  <td>0.14   </td>
+                  <td>0.07   </td>
+                  <td>0.11   </td>
+                  <td>0.09   </td>
+                  <td>0.07   </td>
+                </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+      function styleCell_tinytable_u5oh7mzpjnbxj53aul1k(i, j, css_id) {
+        var table = document.getElementById("tinytable_d63u0rkzxoz7uef4enmf");
+        table.rows[i].cells[j].classList.add(css_id);
+      }
+      function insertSpanRow(i, colspan, content) {
+        var table = document.getElementById('tinytable_d63u0rkzxoz7uef4enmf');
+        var newRow = table.insertRow(i);
+        var newCell = newRow.insertCell(0);
+        newCell.setAttribute("colspan", colspan);
+        // newCell.innerText = content;
+        // this may be unsafe, but innerText does not interpret <br>
+        newCell.innerHTML = content;
+      }
+      function spanCell_tinytable_u5oh7mzpjnbxj53aul1k(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_d63u0rkzxoz7uef4enmf");
+        const targetRow = table.rows[i];
+        const targetCell = targetRow.cells[j];
+        for (let r = 0; r < rowspan; r++) {
+          // Only start deleting cells to the right for the first row (r == 0)
+          if (r === 0) {
+            // Delete cells to the right of the target cell in the first row
+            for (let c = colspan - 1; c > 0; c--) {
+              if (table.rows[i + r].cells[j + c]) {
+                table.rows[i + r].deleteCell(j + c);
+              }
+            }
+          }
+          // For rows below the first, delete starting from the target column
+          if (r > 0) {
+            for (let c = colspan - 1; c >= 0; c--) {
+              if (table.rows[i + r] && table.rows[i + r].cells[j]) {
+                table.rows[i + r].deleteCell(j);
+              }
+            }
+          }
+        }
+        // Set rowspan and colspan of the target cell
+        targetCell.rowSpan = rowspan;
+        targetCell.colSpan = colspan;
+      }
+
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(0, 0, 'tinytable_css_iarcnjcb4zlcrfmry6lr') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(0, 1, 'tinytable_css_iarcnjcb4zlcrfmry6lr') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(0, 2, 'tinytable_css_iarcnjcb4zlcrfmry6lr') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(0, 3, 'tinytable_css_iarcnjcb4zlcrfmry6lr') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(0, 4, 'tinytable_css_iarcnjcb4zlcrfmry6lr') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(0, 5, 'tinytable_css_iarcnjcb4zlcrfmry6lr') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(0, 0, 'tinytable_css_w0crzs4cer83o73dq6h0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(1, 0, 'tinytable_css_w0crzs4cer83o73dq6h0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(2, 0, 'tinytable_css_w0crzs4cer83o73dq6h0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(3, 0, 'tinytable_css_w0crzs4cer83o73dq6h0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(4, 0, 'tinytable_css_w0crzs4cer83o73dq6h0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(5, 0, 'tinytable_css_w0crzs4cer83o73dq6h0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(6, 0, 'tinytable_css_w0crzs4cer83o73dq6h0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(7, 0, 'tinytable_css_w0crzs4cer83o73dq6h0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(8, 0, 'tinytable_css_w0crzs4cer83o73dq6h0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(9, 0, 'tinytable_css_w0crzs4cer83o73dq6h0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(10, 0, 'tinytable_css_w0crzs4cer83o73dq6h0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(11, 0, 'tinytable_css_w0crzs4cer83o73dq6h0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(12, 0, 'tinytable_css_w0crzs4cer83o73dq6h0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(13, 0, 'tinytable_css_w0crzs4cer83o73dq6h0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(14, 0, 'tinytable_css_w0crzs4cer83o73dq6h0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(15, 0, 'tinytable_css_w0crzs4cer83o73dq6h0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(16, 0, 'tinytable_css_w0crzs4cer83o73dq6h0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(17, 0, 'tinytable_css_w0crzs4cer83o73dq6h0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(18, 0, 'tinytable_css_w0crzs4cer83o73dq6h0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(19, 0, 'tinytable_css_w0crzs4cer83o73dq6h0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(20, 0, 'tinytable_css_w0crzs4cer83o73dq6h0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(21, 0, 'tinytable_css_w0crzs4cer83o73dq6h0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(22, 0, 'tinytable_css_w0crzs4cer83o73dq6h0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(23, 0, 'tinytable_css_w0crzs4cer83o73dq6h0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(24, 0, 'tinytable_css_w0crzs4cer83o73dq6h0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(25, 0, 'tinytable_css_w0crzs4cer83o73dq6h0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(0, 1, 'tinytable_css_mcz9qy1mg5xpqe7djzc0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(1, 1, 'tinytable_css_mcz9qy1mg5xpqe7djzc0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(2, 1, 'tinytable_css_mcz9qy1mg5xpqe7djzc0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(3, 1, 'tinytable_css_mcz9qy1mg5xpqe7djzc0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(4, 1, 'tinytable_css_mcz9qy1mg5xpqe7djzc0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(5, 1, 'tinytable_css_mcz9qy1mg5xpqe7djzc0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(6, 1, 'tinytable_css_mcz9qy1mg5xpqe7djzc0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(7, 1, 'tinytable_css_mcz9qy1mg5xpqe7djzc0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(8, 1, 'tinytable_css_mcz9qy1mg5xpqe7djzc0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(9, 1, 'tinytable_css_mcz9qy1mg5xpqe7djzc0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(10, 1, 'tinytable_css_mcz9qy1mg5xpqe7djzc0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(11, 1, 'tinytable_css_mcz9qy1mg5xpqe7djzc0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(12, 1, 'tinytable_css_mcz9qy1mg5xpqe7djzc0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(13, 1, 'tinytable_css_mcz9qy1mg5xpqe7djzc0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(14, 1, 'tinytable_css_mcz9qy1mg5xpqe7djzc0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(15, 1, 'tinytable_css_mcz9qy1mg5xpqe7djzc0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(16, 1, 'tinytable_css_mcz9qy1mg5xpqe7djzc0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(17, 1, 'tinytable_css_mcz9qy1mg5xpqe7djzc0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(18, 1, 'tinytable_css_mcz9qy1mg5xpqe7djzc0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(19, 1, 'tinytable_css_mcz9qy1mg5xpqe7djzc0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(20, 1, 'tinytable_css_mcz9qy1mg5xpqe7djzc0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(21, 1, 'tinytable_css_mcz9qy1mg5xpqe7djzc0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(22, 1, 'tinytable_css_mcz9qy1mg5xpqe7djzc0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(23, 1, 'tinytable_css_mcz9qy1mg5xpqe7djzc0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(24, 1, 'tinytable_css_mcz9qy1mg5xpqe7djzc0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(25, 1, 'tinytable_css_mcz9qy1mg5xpqe7djzc0') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(0, 2, 'tinytable_css_ibpt9xb2m6jfar397c7i') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(1, 2, 'tinytable_css_ibpt9xb2m6jfar397c7i') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(2, 2, 'tinytable_css_ibpt9xb2m6jfar397c7i') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(3, 2, 'tinytable_css_ibpt9xb2m6jfar397c7i') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(4, 2, 'tinytable_css_ibpt9xb2m6jfar397c7i') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(5, 2, 'tinytable_css_ibpt9xb2m6jfar397c7i') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(6, 2, 'tinytable_css_ibpt9xb2m6jfar397c7i') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(7, 2, 'tinytable_css_ibpt9xb2m6jfar397c7i') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(8, 2, 'tinytable_css_ibpt9xb2m6jfar397c7i') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(9, 2, 'tinytable_css_ibpt9xb2m6jfar397c7i') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(10, 2, 'tinytable_css_ibpt9xb2m6jfar397c7i') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(11, 2, 'tinytable_css_ibpt9xb2m6jfar397c7i') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(12, 2, 'tinytable_css_ibpt9xb2m6jfar397c7i') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(13, 2, 'tinytable_css_ibpt9xb2m6jfar397c7i') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(14, 2, 'tinytable_css_ibpt9xb2m6jfar397c7i') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(15, 2, 'tinytable_css_ibpt9xb2m6jfar397c7i') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(16, 2, 'tinytable_css_ibpt9xb2m6jfar397c7i') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(17, 2, 'tinytable_css_ibpt9xb2m6jfar397c7i') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(18, 2, 'tinytable_css_ibpt9xb2m6jfar397c7i') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(19, 2, 'tinytable_css_ibpt9xb2m6jfar397c7i') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(20, 2, 'tinytable_css_ibpt9xb2m6jfar397c7i') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(21, 2, 'tinytable_css_ibpt9xb2m6jfar397c7i') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(22, 2, 'tinytable_css_ibpt9xb2m6jfar397c7i') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(23, 2, 'tinytable_css_ibpt9xb2m6jfar397c7i') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(24, 2, 'tinytable_css_ibpt9xb2m6jfar397c7i') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(25, 2, 'tinytable_css_ibpt9xb2m6jfar397c7i') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(0, 3, 'tinytable_css_okw55dxv4yiwpqt7v9q1') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(1, 3, 'tinytable_css_okw55dxv4yiwpqt7v9q1') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(2, 3, 'tinytable_css_okw55dxv4yiwpqt7v9q1') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(3, 3, 'tinytable_css_okw55dxv4yiwpqt7v9q1') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(4, 3, 'tinytable_css_okw55dxv4yiwpqt7v9q1') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(5, 3, 'tinytable_css_okw55dxv4yiwpqt7v9q1') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(6, 3, 'tinytable_css_okw55dxv4yiwpqt7v9q1') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(7, 3, 'tinytable_css_okw55dxv4yiwpqt7v9q1') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(8, 3, 'tinytable_css_okw55dxv4yiwpqt7v9q1') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(9, 3, 'tinytable_css_okw55dxv4yiwpqt7v9q1') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(10, 3, 'tinytable_css_okw55dxv4yiwpqt7v9q1') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(11, 3, 'tinytable_css_okw55dxv4yiwpqt7v9q1') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(12, 3, 'tinytable_css_okw55dxv4yiwpqt7v9q1') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(13, 3, 'tinytable_css_okw55dxv4yiwpqt7v9q1') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(14, 3, 'tinytable_css_okw55dxv4yiwpqt7v9q1') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(15, 3, 'tinytable_css_okw55dxv4yiwpqt7v9q1') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(16, 3, 'tinytable_css_okw55dxv4yiwpqt7v9q1') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(17, 3, 'tinytable_css_okw55dxv4yiwpqt7v9q1') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(18, 3, 'tinytable_css_okw55dxv4yiwpqt7v9q1') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(19, 3, 'tinytable_css_okw55dxv4yiwpqt7v9q1') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(20, 3, 'tinytable_css_okw55dxv4yiwpqt7v9q1') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(21, 3, 'tinytable_css_okw55dxv4yiwpqt7v9q1') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(22, 3, 'tinytable_css_okw55dxv4yiwpqt7v9q1') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(23, 3, 'tinytable_css_okw55dxv4yiwpqt7v9q1') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(24, 3, 'tinytable_css_okw55dxv4yiwpqt7v9q1') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(25, 3, 'tinytable_css_okw55dxv4yiwpqt7v9q1') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(0, 4, 'tinytable_css_h720diydtlz6to8b5wwh') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(1, 4, 'tinytable_css_h720diydtlz6to8b5wwh') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(2, 4, 'tinytable_css_h720diydtlz6to8b5wwh') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(3, 4, 'tinytable_css_h720diydtlz6to8b5wwh') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(4, 4, 'tinytable_css_h720diydtlz6to8b5wwh') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(5, 4, 'tinytable_css_h720diydtlz6to8b5wwh') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(6, 4, 'tinytable_css_h720diydtlz6to8b5wwh') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(7, 4, 'tinytable_css_h720diydtlz6to8b5wwh') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(8, 4, 'tinytable_css_h720diydtlz6to8b5wwh') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(9, 4, 'tinytable_css_h720diydtlz6to8b5wwh') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(10, 4, 'tinytable_css_h720diydtlz6to8b5wwh') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(11, 4, 'tinytable_css_h720diydtlz6to8b5wwh') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(12, 4, 'tinytable_css_h720diydtlz6to8b5wwh') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(13, 4, 'tinytable_css_h720diydtlz6to8b5wwh') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(14, 4, 'tinytable_css_h720diydtlz6to8b5wwh') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(15, 4, 'tinytable_css_h720diydtlz6to8b5wwh') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(16, 4, 'tinytable_css_h720diydtlz6to8b5wwh') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(17, 4, 'tinytable_css_h720diydtlz6to8b5wwh') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(18, 4, 'tinytable_css_h720diydtlz6to8b5wwh') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(19, 4, 'tinytable_css_h720diydtlz6to8b5wwh') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(20, 4, 'tinytable_css_h720diydtlz6to8b5wwh') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(21, 4, 'tinytable_css_h720diydtlz6to8b5wwh') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(22, 4, 'tinytable_css_h720diydtlz6to8b5wwh') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(23, 4, 'tinytable_css_h720diydtlz6to8b5wwh') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(24, 4, 'tinytable_css_h720diydtlz6to8b5wwh') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(25, 4, 'tinytable_css_h720diydtlz6to8b5wwh') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(0, 5, 'tinytable_css_9ncp8cmuhgs2ps4jj7wk') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(1, 5, 'tinytable_css_9ncp8cmuhgs2ps4jj7wk') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(2, 5, 'tinytable_css_9ncp8cmuhgs2ps4jj7wk') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(3, 5, 'tinytable_css_9ncp8cmuhgs2ps4jj7wk') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(4, 5, 'tinytable_css_9ncp8cmuhgs2ps4jj7wk') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(5, 5, 'tinytable_css_9ncp8cmuhgs2ps4jj7wk') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(6, 5, 'tinytable_css_9ncp8cmuhgs2ps4jj7wk') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(7, 5, 'tinytable_css_9ncp8cmuhgs2ps4jj7wk') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(8, 5, 'tinytable_css_9ncp8cmuhgs2ps4jj7wk') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(9, 5, 'tinytable_css_9ncp8cmuhgs2ps4jj7wk') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(10, 5, 'tinytable_css_9ncp8cmuhgs2ps4jj7wk') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(11, 5, 'tinytable_css_9ncp8cmuhgs2ps4jj7wk') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(12, 5, 'tinytable_css_9ncp8cmuhgs2ps4jj7wk') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(13, 5, 'tinytable_css_9ncp8cmuhgs2ps4jj7wk') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(14, 5, 'tinytable_css_9ncp8cmuhgs2ps4jj7wk') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(15, 5, 'tinytable_css_9ncp8cmuhgs2ps4jj7wk') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(16, 5, 'tinytable_css_9ncp8cmuhgs2ps4jj7wk') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(17, 5, 'tinytable_css_9ncp8cmuhgs2ps4jj7wk') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(18, 5, 'tinytable_css_9ncp8cmuhgs2ps4jj7wk') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(19, 5, 'tinytable_css_9ncp8cmuhgs2ps4jj7wk') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(20, 5, 'tinytable_css_9ncp8cmuhgs2ps4jj7wk') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(21, 5, 'tinytable_css_9ncp8cmuhgs2ps4jj7wk') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(22, 5, 'tinytable_css_9ncp8cmuhgs2ps4jj7wk') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(23, 5, 'tinytable_css_9ncp8cmuhgs2ps4jj7wk') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(24, 5, 'tinytable_css_9ncp8cmuhgs2ps4jj7wk') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(25, 5, 'tinytable_css_9ncp8cmuhgs2ps4jj7wk') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(18, 0, 'tinytable_css_55yw7beg92gfacdbzcsp') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(18, 1, 'tinytable_css_55yw7beg92gfacdbzcsp') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(18, 2, 'tinytable_css_55yw7beg92gfacdbzcsp') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(18, 3, 'tinytable_css_55yw7beg92gfacdbzcsp') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(18, 4, 'tinytable_css_55yw7beg92gfacdbzcsp') })
+window.addEventListener('load', function () { styleCell_tinytable_u5oh7mzpjnbxj53aul1k(18, 5, 'tinytable_css_55yw7beg92gfacdbzcsp') })
+    </script>
+
+  
+
+
+</div>
+</div>
+<p><strong>Note 1: notice all the information at the bottom of the <code>modelsummary</code> output - if you only needed the AIC and delta AIC, what could you do? see package documentation for help</strong> <strong>Note 2: you will always have to report the F-statistic, degrees of freedom, test statistic, p-value, ⍺, and R<sup>2</sup>. Whether or not this information is in a table is up to you.</strong></p>
+</section>
+<section id="b.-statistical-methods" class="level2">
+<h2 class="anchored" data-anchor-id="b.-statistical-methods">b. Statistical methods</h2>
+<p>In this statistical analysis, I examined the influence of specific leaf area (SLA), species, and water treatment on total growth (g) of the plant by constructing a set of 5 models that compared each variable. These included total biomass as a function of none of the predictors, total biomass as a function of SLA, water treatment and species, total biomass as a function of SLA and water treatment, total biomass as a function of SLA and species, and total biomass as a function of water treatment and species.</p>
+<p>First, I visualized the variables individually against total mass with ggpairs and ggplot, and determined that there seemingly was a correlation between each one. Then I created the models using lm(), and looked at the residuals, distributions, and outliers within their diagnostics to determine if the model was valid.</p>
+<p>Next, I compared each model using model.sel(), and determined which one was the best based on their diagnostics and coefficients. The best model not only has a lower AIC and delta of 0, but also visually needs homeostatic residuals, a normal distribution and no influential outliers in their diagnostics.</p>
+</section>
+<section id="c.-visualization" class="level2">
+<h2 class="anchored" data-anchor-id="c.-visualization">c.&nbsp;Visualization</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># creating new data frame of model predictions for plotting</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>model_preds_for_plotting <span class="ot">&lt;-</span> model_preds <span class="sc">%&gt;%</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">water_treatment =</span> x,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">species =</span> group) <span class="co"># renaming columns to make this easier to use</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># underlying data</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> drought_exp_clean,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> water_treatment,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>                 <span class="at">y =</span> total_g,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> water_treatment,</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>                  <span class="at">alpha =</span> <span class="fl">0.3</span>)) <span class="sc">+</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># model prediction lines</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> model_preds_for_plotting,</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">x =</span> water_treatment, </span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>                <span class="at">y =</span> predicted,</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>                <span class="at">color =</span> water_treatment)) <span class="sc">+</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># cleaner theme</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"cornflowerblue"</span>, <span class="st">"violet"</span>)) <span class="sc">+</span> <span class="co"># giving each water type a different color </span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  <span class="co"># creating different panels for species</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>species_name) <span class="sc">+</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Water Treatment"</span>, <span class="co"># naming x axis </span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>     <span class="at">y =</span> <span class="st">"Total Mass (g)"</span>, <span class="co"># naming y axis</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>     <span class="at">title =</span> <span class="st">"Total Mass of Species with Different Water Treatments "</span>) <span class="co"># making a title</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Homework-3_files/figure-html/model-predictions-with-ggeffects-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="d.-figure-caption" class="level2">
+<h2 class="anchored" data-anchor-id="d.-figure-caption">d.&nbsp;Figure Caption</h2>
+<p>Figure 1: Jitter plot visualizing the total mass of plant species in well watered vs drought stressed water treatments. Well watered plants were represented with blue while drought stressed plants are represented with pink. Large opague dots represent the mean total mass (g). Lines represent model predition lines. Trasnparent dots represent underlying data.</p>
+<p>Source: Valliere JM, Zhang J, Sharifi MR, Rundel PW. Can we condition native plants to increase drought tolerance and improve restoration success? Ecol Appl. 2019 Apr;29(3):e01863. doi: 10.1002/eap.1863. Epub 2019 Mar 4. PMID: 30831005.</p>
+</section>
+<section id="e.-results" class="level2">
+<h2 class="anchored" data-anchor-id="e.-results">e. Results</h2>
+<p>My statistical analysis suggests that species and water treatment, or model 4, best influence plant total mass</p>
+<p>(Multiple linear regression model, ?normal distribution, F-statistic(62 DF) = 27.08, p-value &lt; 0.001 (p=2.2e-16), α = 0.05, R^2 = 0.75)</p>
+<p>model type, distribution, degrees of freedom, F-statistic, p-value, alpha, R<sup>2</sup></p>
+<p>On average across species, well watered plants tend to be 0.12 ± 0.02g heavier than drought stressed plants. Water treatment significantly predicts total mass (p &lt; 0.001).. Across water treatments on average, <em>Lotus scoparius</em> plants were -0.20 ± 0.032 g less than <em>Encelia californica</em> (p &lt; 0.001), and “Grindelia camporum” plants were -0.31 ± 0.032 less than <em>Encelia californica</em> plants (p &lt; 0.001).</p>
+</section>
+</section>
+<section id="problem-2" class="level1">
+<h1>Problem 2</h1>
+<section id="a." class="level2">
+<h2 class="anchored" data-anchor-id="a.">a.</h2>
+<p>Because I have time as a variable ranging from 1-10 in my data, I could indicate each minute with a different visual, like a shape or color. This could be separated by another variable like class location, mode of transportation or day of the week. Also, with the variable distance to class, I could also make some sort of map. This is especially relevant because all of the class locations are on campus, which is a relatively small area to draw.</p>
+</section>
+<section id="b." class="level2">
+<h2 class="anchored" data-anchor-id="b.">b.</h2>
+<p>sketch ## c.&nbsp; draft</p>
+</section>
+<section id="d." class="level2">
+<h2 class="anchored" data-anchor-id="d.">d.</h2>
+<p>In my affective visualization, each colored line indicates an observation in order of time, which is minutes arrived early to class. The key on the left decodes these colors from 1 minute early on the top, to 10 minutes early on the bottom. There are five groups separated by class location and labeled on the right hand side.</p>
+<p>I was primarily inspired by Ed Hawkin’s “warming stripes” where numerical temperature is represented by a color to showcase a pattern of increasing global temperatures. Similarly, the colors in my piece can help visualize if there is a pattern in arrival time based on class location.</p>
+<p>This visual is a poster created in Canva, using their line tool. Each indivdual line was hand drawn and colored based on my data.</p>
+</section>
+</section>
+<section id="problem-3" class="level1">
+<h1>Problem 3</h1>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

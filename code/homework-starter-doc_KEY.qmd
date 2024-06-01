@@ -330,7 +330,7 @@ ggplot() +
 # one option for a single model
 flextable::as_flextable(model1) 
 
-# another option for a single model
+# another option for a fsingle model
 gtsummary::tbl_regression(model1)
 
 # comparing models
