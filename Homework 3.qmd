@@ -1,7 +1,7 @@
 ---
 title: "Homework 3"
 author: "Kirya Wagner"
-GitHub Link: "https://github.com/kiryawagner/Wagner-Kirya-Homework-03"
+date: "06/01/2024"
 format:
   html: 
     toc: true # includes a table of contents in rendered html format
@@ -9,6 +9,8 @@ execute: # for all code chunks
     warning: false # do not display warnings
     message: false # do not display messages
 ---
+
+GitHub Link: https://github.com/kiryawagner/Wagner-Kirya-Homework-03
 
 
 ```{r, echo = FALSE}
@@ -142,7 +144,7 @@ model_preds <- ggpredict(model4,
 
 ## a. Making a table
 
-Table 1: Table displaying model estimates for the null and models 1-4.
+Table 1: Table displaying model estimates for the null model and models 1-4. Each model displays  predictor estimates in comparison to the reference, and an AIC number.
 
 ```{r, results = FALSE}
 # comparing models
@@ -159,12 +161,9 @@ models <- list(
 ```
 
 ```{r, echo = FALSE}
-
-modelsummary(models)
+modelsummary(models, gof_map = c("aic", "r.squared"), stars = TRUE)
+    
 ```
-
-**Note 1: notice all the information at the bottom of the `modelsummary` output - if you only needed the AIC and delta AIC, what could you do? see package documentation for help**
-**Note 2: you will always have to report the F-statistic, degrees of freedom, test statistic, p-value, ⍺, and R^2^. Whether or not this information is in a table is up to you.**
 
 
 ## b. Statistical methods 
@@ -173,35 +172,46 @@ In this statistical analysis, I examined the influence of specific leaf area (SL
 
 First, I visualized the variables individually against total mass with ggpairs and ggplot, and determined that there seemingly was a correlation between each one. Then I created the models using lm(), and looked at the residuals, distributions, and outliers within their diagnostics to determine if the model was valid.
 
-Next, I compared each model using model.sel(), and determined which one was the best based on their diagnostics and coefficients. The best model not only has a lower AIC and delta of 0, but also visually needs homeostatic residuals, a normal distribution and no influential outliers in their diagnostics.
+Next, I compared each model using model.sel(), and determined which one was the best based on their diagnostics and coefficients. The best model not only has a lower AIC and delta of 0, but also visually needs homeostatic residuals, a normal distribution and no influential outliers in their diagnostics. Model 4 conformed to all of these requirements. 
 
 
 ## c. Visualization
 
-```{r model-predictions-with-ggeffects}
+```{r}
 # creating new data frame of model predictions for plotting
+
 model_preds_for_plotting <- model_preds %>% 
   rename(water_treatment = x,
          species = group) # renaming columns to make this easier to use
 
 ggplot() +
-  # underlying data
+  # plotting underlying data
   geom_point(data = drought_exp_clean,
              aes(x = water_treatment,
                  y = total_g,
-                 color = water_treatment,
-                  alpha = 0.3)) +
-
-  # model prediction lines
+                 color = water_treatment, # sorting by color 
+                  alpha = 0.3)) + # making underlying data more transparent
+  
+  # 95 % CI
+    geom_ribbon(data = model_preds_for_plotting,
+              aes(x = water_treatment,
+                  y = predicted,
+                  ymin = conf.low,
+                  ymax = conf.high, # setting confidence interval 
+                  fill = water_treatment),
+              alpha = 0.2) +
+  
+# model prediction lines
   geom_line(data = model_preds_for_plotting,
             aes(x = water_treatment, 
                 y = predicted,
-                color = water_treatment)) +
+                color = water_treatment)) + # coloring by water treatment  
   
   # cleaner theme
   theme_classic() +
-  theme(legend.position = "none") +
-  scale_color_manual(values = c("cornflowerblue", "violet")) + # giving each water type a different color 
+  theme(legend.position = "none") + # removing the legend 
+  scale_color_manual(values = c("cornflowerblue", "violet")) + 
+# giving each water type a different color 
   
   # creating different panels for species
   facet_wrap(~species_name) +
@@ -214,20 +224,16 @@ ggplot() +
 
 ## d. Figure Caption 
 
-Figure 1: Jitter plot visualizing the total mass of plant species in well watered vs drought stressed water treatments. Well watered plants were represented with blue while drought stressed plants are represented with pink. Large opague dots represent the mean total mass (g). Lines represent model predition lines. Trasnparent dots represent underlying data. 
+**Figure 1:** Jitter plot visualizing the total mass of plants in well watered vs drought stressed water treatments separated by species. Well watered plants were represented with blue while drought stressed plants are represented with pink. Large opaque dots represent the mean total mass (g). Lines represent model prediction lines with 95% confidence intervals. Transparent dots represent underlying data. 
 
 Source: Valliere JM, Zhang J, Sharifi MR, Rundel PW. Can we condition native plants to increase drought tolerance and improve restoration success? Ecol Appl. 2019 Apr;29(3):e01863. doi: 10.1002/eap.1863. Epub 2019 Mar 4. PMID: 30831005.
 
 ## e. Results 
 
-My statistical analysis suggests that species and water treatment, or model 4, best influence plant total mass 
+My statistical analysis suggests that species and water treatment, or model 4, best influence plant total mass (multiple linear regression model, Normal distribution, F(7, 62) = 27.08, p < 0.001, α = 0.05, R^2 = 0.75). Model 4 also had the lowest AIC (-159.2) and a delta AIC of 0. 
 
-(Multiple linear regression model, ?normal distribution, F-statistic(62 DF) = 27.08, p-value < 0.001 (p=2.2e-16), α = 0.05, R^2 = 0.75)
-
-model type, distribution, degrees of freedom, F-statistic, p-value, alpha, R^2^
-
-On average across species, well watered plants tend to be 0.12 ± 0.02g heavier than drought stressed plants. Water treatment significantly predicts total mass (p < 0.001).. 
-Across water treatments on average, _Lotus scoparius_ plants were -0.20 ± 0.032 g less than _Encelia californica_ (p < 0.001), and "Grindelia camporum" plants were -0.31 ± 0.032 less than _Encelia californica_ plants (p < 0.001). 
+On average across species, well watered plants tend to be 0.12 ± 0.02g heavier than drought stressed plants. Water treatment significantly predicts total mass (p < 0.001).
+Across water treatments on average, _Lotus scoparius_ plants were -0.20 ± 0.032 g less than _Encelia californica_ (p < 0.001), and _Grindelia camporum_ plants were -0.31 ± 0.032 less than _Encelia californica_ plants (p < 0.001). 
 
 # Problem 2 
 
@@ -235,25 +241,25 @@ Across water treatments on average, _Lotus scoparius_ plants were -0.20 ± 0.032
 Because I have time as a variable ranging from 1-10 in my data, I could indicate each minute with a different visual, like a shape or color. This could be separated by another variable like class location, mode of transportation or day of the week. Also, with the variable distance to class, I could also make some sort of map. This is especially relevant because all of the class locations are on campus, which is a relatively small area to draw. 
 
 ## b. 
-sketch
+**sketch**
 
 ## c. 
-draft
+**draft**
 
 ## d.
 In my affective visualization, each colored line indicates an observation in order of time, which is minutes arrived early to class. The key on the left decodes these colors from 1 minute early on the top, to 10 minutes early on the bottom. They go from lightest to darkest. There are five groups separated by class location and labeled on the right hand side. 
 
 I was primarily inspired by Ed Hawkin's "warming stripes" where numerical temperature is represented by a color to showcase a pattern of increasing global temperatures. Similarly, the colors in my piece can help visualize if there is a pattern in arrival time based on class location.
 
-This visual is a poster created in Canva, using their line tool. Each indivdual line was hand drawn and colored based on my data.
+This visual is a poster created in Canva, using their poster format and line tool. Each indivdual line was hand drawn and colored according to the key, and was based on the "minutes early" column in my data. 
 
 # Problem 3
 
 ## a. Revisit and summarize 
 
-The author uses a series of independent t tests to assess the impact of a media campaign exposing animal cruelty in the red meat industry on consumer attitudes about the industry. Specifically, there were 4 data tables that list the before and after eating habits, knowledge/attitudes about farm animal welfare, trust of information sources, and communication in relation to farm animal welfare. 
+The author uses a series of independent t tests to assess the impact of a media campaign exposing animal cruelty in the red meat industry on consumer attitudes about the industry before and after watching the campaign. There were 4 data tables that list the before and after eating habits, knowledge/attitudes about farm animal welfare, trust of information sources, and communication in relation to farm animal welfare. 
 
-Insert the figure or table you described in Homework 2 here.
+**Insert the figure or table you described in Homework 2 here.**
 
 
 ## b. Visual clarity 
@@ -263,12 +269,10 @@ Summary statistics are clearly listed in each of the 4 data tables. These includ
  
 ## c. Aesthetic clarity
 
-With 4 separate data tables describing the results of the survey, there is a lot of information to navigate to find the most relevant data in relation to the central question. There is not only a lot of "clutter" within some of the tables with unclear topics, but the tables themselves sometimes feel cluttered as well. For example, table 6, which describes respondents beliefs about animal welfare before and after the program contains vague and confusing topics and variables that are not explained in the paper. These include topics of "perceived knowledge", "actual knowledge", and "knowledge score' with no explanation to how these were calculated. 
-
+With 4 separate data tables describing the results of the survey, there is a lot of information to navigate to find the most relevant data in relation to the central question. There is not only a lot of "clutter" within some of the tables with unclear topics, but the tables themselves sometimes feel cluttered as well. For example, table 6, which describes respondents beliefs about animal welfare before and after the program contains vague and confusing topics and variables that are not explained in the paper. These include topics of "perceived knowledge", "actual knowledge", and "knowledge score' with no explanation to how these were calculated. However, the data tables are consistently formatted with their summary statistics making it easier to understand the information presented in each table. 
 
 ## d. Recommendations 
 
-A jitter plot would be a good way to visualize the data in this paper as it can compare two groups of means for one variable, being the before and after survey responses for each  question. The x-axis would a variable, and the y axis would be the 1-10 scale response from each survey participant The before and after could be different colors (with a legend) to see if there is overlap in these points. There should also be opaque dots signifying the mean with error bars, and the underlying data should be more transparent.  
+A jitter plot would be a good way to visualize the data in this paper as it can compare two groups of means for one variable, being the before and after survey responses for each  question. The x-axis would a variable, and the y axis would be the 1-10 scale response from each survey participant. The before and after could be different colors (with a legend) to see if there is overlap in these points. There should also be opaque dots signifying the mean with error bars, and the underlying data should be more transparent.  
 
-Furthermore, as mentioned earlier, there should be an explanation of how some of the variables are measured, such as "perceived knowledge" vs "actual knowledge". It is unclear as readers to how these means were calculated (via a test, or self reported?). It would also be helpful if there was an example of the survey to understand how these questions were specifically worded to improve the understanding of the variables listed. 
-Also, to help remove clutter
+Furthermore, as mentioned earlier, there should be an explanation of how some of the variables are measured, such as "perceived knowledge" vs "actual knowledge". It is unclear as readers to how these means were calculated (via a test, or self reported?). It would also be helpful if there was an example of the survey to understand how these questions were specifically worded to improve readers understanding of variables listed. 
