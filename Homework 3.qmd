@@ -10,7 +10,7 @@ execute: # for all code chunks
     message: false # do not display messages
 ---
 
-GitHub Link: https://github.com/kiryawagner/Wagner-Kirya-Homework-03
+**GitHub Link:** https://github.com/kiryawagner/Wagner-Kirya-Homework-03
 
 
 ```{r, echo = FALSE}
@@ -44,7 +44,7 @@ drought_exp <- read_xlsx(path = here("data",
                                      "Valliere_etal_EcoApps_Data.xlsx"),
                          sheet = "First Harvest")
 ```
-
+/Users/kiryawagner/Documents/Sketch .pdf
 ```{r, echo = FALSE}
 # cleaning
 drought_exp_clean <- drought_exp %>% 
@@ -148,7 +148,7 @@ Table 1: Table displaying model estimates for the null model and models 1-4. Eac
 
 ```{r, results = FALSE}
 # comparing models
-modelsummary::modelsummary # this function takes a list of models
+modelsummary::modelsummary # makes a list of models
 ```
 
 ```{r}
@@ -241,10 +241,10 @@ Across water treatments on average, _Lotus scoparius_ plants were -0.20 ± 0.032
 Because I have time as a variable ranging from 1-10 in my data, I could indicate each minute with a different visual, like a shape or color. This could be separated by another variable like class location, mode of transportation or day of the week. Also, with the variable distance to class, I could also make some sort of map. This is especially relevant because all of the class locations are on campus, which is a relatively small area to draw. 
 
 ## b. 
-**sketch**
+**Sketch attached**
 
 ## c. 
-**draft**
+**Draft attached**
 
 ## d.
 In my affective visualization, each colored line indicates an observation in order of time, which is minutes arrived early to class. The key on the left decodes these colors from 1 minute early on the top, to 10 minutes early on the bottom. They go from lightest to darkest. There are five groups separated by class location and labeled on the right hand side. 
@@ -259,7 +259,7 @@ This visual is a poster created in Canva, using their poster format and line too
 
 The author uses a series of independent t tests to assess the impact of a media campaign exposing animal cruelty in the red meat industry on consumer attitudes about the industry before and after watching the campaign. There were 4 data tables that list the before and after eating habits, knowledge/attitudes about farm animal welfare, trust of information sources, and communication in relation to farm animal welfare. 
 
-**Insert the figure or table you described in Homework 2 here.**
+**Images Attached**
 
 
 ## b. Visual clarity 
